@@ -54,14 +54,20 @@ h1{font-size:2.1rem;line-height:1.1;margin:0;color:var(--accent);letter-spacing:
 .jump a{font-size:.78rem;text-decoration:none;color:var(--accent-dark);border:1px solid var(--rule);padding:.2rem .55rem;border-radius:2px;background:var(--band)}
 .jump a:hover{background:var(--accent-light)}
 .tl{overflow-x:auto;border-top:2px solid var(--accent);font-size:.78rem;line-height:1.35}
-.tr{display:grid;grid-template-columns:minmax(9rem,1.1fr) repeat(3,minmax(8.5rem,1fr));min-width:40rem;border-bottom:1px solid var(--line)}
-.tr>*{padding:.4rem .5rem}
+.grp{display:grid;grid-template-columns:minmax(9rem,1.1fr) repeat(3,minmax(8.5rem,1fr));min-width:40rem;border-bottom:2px solid var(--rule)}
+.grp>*{padding:.4rem .5rem}
+.grp.th{border-bottom:1px solid var(--line)}
+.grp .tlab{grid-column:1;display:flex;flex-direction:column;gap:.1rem}
+.grp .tlab b{margin:0}
+.grp .c{grid-column:auto;border-top:1px solid var(--line)}
+.grp .c.all{grid-column:2 / span 3}
+.grp .sub{display:block;font-weight:700;color:var(--grey);font-size:.72rem;letter-spacing:.03em}
 .th>div{font-weight:700;color:var(--accent)}
 .tlab{text-decoration:none;color:var(--ink)}
 .tlab b{color:var(--accent);margin-right:.25rem}
 .tlab:hover{background:var(--accent-light)}
 .c{border-left:1px solid var(--line)}
-.c.all{grid-column:2 / span 3;background:var(--band)}
+.c.all{background:var(--band)}
 .c.wave{border-left:3px double var(--accent)}
 .tln{font-size:.78rem;color:var(--grey);margin:.5rem 0 0}
 details.part,details.field{scroll-margin-top:5.5rem}
@@ -202,15 +208,44 @@ table.adm td:first-child{font-family:var(--sans);font-size:.78rem;color:var(--gr
 <a href="#p-A">A · Context</a><a href="#p-B">B · Relevance</a><a href="#p-C">C · Partnership</a><a href="#p-D">D · Impact</a><a href="#p-E">E · Work packages</a><a href="#p-F">F · Summary</a><a href="#p-G">G · Formalities</a>
 </nav>
 <div class="tl" role="table" aria-label="Timeline">
-<div class="tr th" role="row"><div role="columnheader"></div><div role="columnheader">Year 1 · 2027/28</div><div role="columnheader">Year 2 · 2028/29</div><div role="columnheader">Year 3 · 2029/30</div></div>
-<div class="tr" role="row"><a class="tlab" href="#f-E1a" role="rowheader"><b>WP1</b> Coordination</a><div class="c all">kick-off · consortium agreement · ethics and data protection · two consortium meetings a year, at the three universities in turn</div></div>
-<div class="tr" role="row"><a class="tlab" href="#f-WP2" role="rowheader"><b>WP2</b> Design criteria and instruments</a><div class="c">first version · recording tool for university teaching · pilot</div><div class="c">revised after wave 1</div><div class="c">final version</div></div>
-<div class="tr" role="row"><a class="tlab" href="#f-WP3" role="rowheader"><b>WP3</b> Card sorting activities</a><div class="c">consolidate the eight sets</div><div class="c">revise after wave 1</div><div class="c">final version · sets on two further topics</div></div>
-<div class="tr" role="row"><a class="tlab" href="#f-WP3" role="rowheader"><b>WP3</b> Stochastic quiz</a><div class="c">build two to three activities</div><div class="c">first use · revise</div><div class="c">second use · final version</div></div>
-<div class="tr" role="row"><a class="tlab" href="#f-WP3" role="rowheader"><b>WP3</b> AI support for design</a><div class="c">extend Kasper · build the quiz assistant</div><div class="c">staff at three universities design with it</div><div class="c">guidelines · open documentation</div></div>
-<div class="tr" role="row"><a class="tlab" href="#f-WP4" role="rowheader"><b>WP4</b> Trial waves</a><div class="c wave">localise · wave 1 · card sorting as it is (baseline)</div><div class="c wave">localise · wave 2 · revised sets + quiz</div><div class="c wave">localise · wave 3 · further topics + revised quiz</div></div>
-<div class="tr" role="row"><a class="tlab" href="#f-WP4" role="rowheader"><b>WP4</b> Evaluation</a><div class="c">synthesis in the summer</div><div class="c">synthesis in the summer</div><div class="c">synthesis · validation report</div></div>
-<div class="tr" role="row"><a class="tlab" href="#f-WP5" role="rowheader"><b>WP5</b> Dissemination</a><div class="c">contributions in the partners’ networks</div><div class="c">contributions in the partners’ networks</div><div class="c">open publication · outside lecturer · closing conference</div></div>
+<div class="grp th" role="row"><div role="columnheader"></div><div role="columnheader">Year 1 · 2027/28</div><div role="columnheader">Year 2 · 2028/29</div><div role="columnheader">Year 3 · 2029/30</div></div>
+<div class="grp" role="rowgroup">
+<a class="tlab" href="#f-E1a" style="grid-row:1 / span 1" role="rowheader"><b>WP1</b>Coordination</a>
+<div class="c all" style="grid-row:1">kick-off · consortium agreement · ethics and data protection · two consortium meetings a year, at the three universities in turn</div>
+</div>
+<div class="grp" role="rowgroup">
+<a class="tlab" href="#f-WP2" style="grid-row:1 / span 1" role="rowheader"><b>WP2</b>Design criteria and instruments</a>
+<div class="c" style="grid-row:1">first version · recording tool for university teaching · pilot</div>
+<div class="c" style="grid-row:1">revised after wave 1</div>
+<div class="c" style="grid-row:1">final version</div>
+</div>
+<div class="grp" role="rowgroup">
+<a class="tlab" href="#f-WP3" style="grid-row:1 / span 3" role="rowheader"><b>WP3</b>Development</a>
+<div class="c" style="grid-row:1"><span class="sub">Card sorting</span>consolidate the eight sets</div>
+<div class="c" style="grid-row:1">revise after wave 1</div>
+<div class="c" style="grid-row:1">final version · sets on two further topics</div>
+<div class="c" style="grid-row:2"><span class="sub">Stochastic quiz</span>build two to three activities</div>
+<div class="c" style="grid-row:2">first use · revise</div>
+<div class="c" style="grid-row:2">second use · final version</div>
+<div class="c" style="grid-row:3"><span class="sub">AI support</span>extend Kasper · build the quiz assistant</div>
+<div class="c" style="grid-row:3">staff at three universities design with it</div>
+<div class="c" style="grid-row:3">guidelines · open documentation</div>
+</div>
+<div class="grp" role="rowgroup">
+<a class="tlab" href="#f-WP4" style="grid-row:1 / span 2" role="rowheader"><b>WP4</b>Trials and evaluation</a>
+<div class="c wave" style="grid-row:1"><span class="sub">Trial waves</span>localise · wave 1 · card sorting as it is (baseline)</div>
+<div class="c wave" style="grid-row:1">localise · wave 2 · revised sets + quiz</div>
+<div class="c wave" style="grid-row:1">localise · wave 3 · further topics + revised quiz</div>
+<div class="c" style="grid-row:2"><span class="sub">Evaluation</span>synthesis in the summer</div>
+<div class="c" style="grid-row:2">synthesis in the summer</div>
+<div class="c" style="grid-row:2">synthesis · validation report</div>
+</div>
+<div class="grp" role="rowgroup">
+<a class="tlab" href="#f-WP5" style="grid-row:1 / span 1" role="rowheader"><b>WP5</b>Dissemination</a>
+<div class="c" style="grid-row:1">contributions in the partners’ networks</div>
+<div class="c" style="grid-row:1">contributions in the partners’ networks</div>
+<div class="c" style="grid-row:1">open publication · outside lecturer · closing conference</div>
+</div>
 </div>
 <p class="tln">Courses start in Lucerne in September, in Hamburg in October and in Oslo in January, so one trial wave is an academic year. The summers carry the revisions. Click a row to open its work package.</p>
 </section>
