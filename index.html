@@ -1,0 +1,638 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>COMPASS — Erasmus+ application</title>
+<style>
+:root{
+  --accent:#935100; --accent-dark:#5C3300; --accent-light:#F8EFE0;
+  --rule:#D9C3A8; --ink:#2A2A2A; --grey:#6B6B6B; --bg:#FFFFFF;
+  /* Blau = alles, was uns gehoert und eine Antwort will. Braun = der Antrag. */
+  --ask:#17567F; --ask-dark:#103D5C; --ask-light:#E7F0F7; --ask-rule:#9EBED5;
+  --band:#FAF6EF; --line:#E4D9C8;
+  --serif:"Iowan Old Style",Georgia,"Times New Roman",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--serif);
+     font-size:16px;line-height:1.55;-webkit-text-size-adjust:100%}
+main{max-width:76rem;margin:0 auto;padding:2rem 1.25rem 5rem}
+h1,h2,h3,summary,button,input,.bar,.meta,.hint,.legend,.dec,.nt,.tag{font-family:var(--sans)}
+h1{font-size:2.1rem;line-height:1.1;margin:0;color:var(--accent);letter-spacing:-.01em}
+.sub{margin:.3rem 0 0;color:var(--grey);font-style:italic}
+.exp{margin:.35rem 0 0;font-family:var(--sans);font-size:1.05rem;color:var(--accent-dark)}
+.exp b{color:var(--accent)}
+
+/* ---- Namensliste ---------------------------------------------------- */
+.names{font-family:var(--sans);font-size:.88rem;margin:1.1rem 0 0;padding:.7rem .9rem .6rem;
+  border:1px solid var(--ask-rule);border-left:5px solid var(--ask);background:var(--ask-light);max-width:52rem}
+.names>summary{cursor:pointer;font-weight:700;color:var(--ask-dark);list-style:none}
+.names>summary::-webkit-details-marker{display:none}
+.names>summary::after{content:" ▸"}
+.names[open]>summary::after{content:" ▾"}
+.names[open]>summary{margin-bottom:.5rem}
+.names #namecount{font-weight:400;color:var(--grey)}
+.names ul{margin:0;padding-left:1.1rem}
+.names li b{color:var(--ink)}
+.names li span{color:var(--grey);font-size:.82rem}
+.names li{margin:0 0 .45rem;line-height:1.4}
+.names ul{padding-left:1.1rem}
+.names li input{margin:.25rem 0 0}
+.names li label{cursor:pointer}
+.names .voters{display:block;font-size:.75rem;color:var(--ask-dark);font-weight:700}
+.names .by{font-size:.75rem;color:var(--grey)}
+.names .prop{display:flex;gap:.4rem;flex-wrap:wrap;margin:.5rem 0 0}
+.names .prop input{font:inherit;font-size:.85rem;padding:.3rem .5rem;border:1px solid var(--ask-rule);flex:1;min-width:14rem}
+.names .nf{margin:.4rem 0 0;font-size:.78rem;color:var(--grey)}
+
+/* ---- Uebersicht ------------------------------------------------------ */
+.over{margin:1.2rem 0 1.4rem;font-family:var(--sans)}
+.over .oh{font-size:1rem;color:var(--accent);margin:0 0 .5rem}
+.jump{display:flex;flex-wrap:wrap;gap:.35rem;margin:0 0 .8rem}
+.jump a{font-size:.78rem;text-decoration:none;color:var(--accent-dark);border:1px solid var(--rule);padding:.2rem .55rem;border-radius:2px;background:var(--band)}
+.jump a:hover{background:var(--accent-light)}
+.tl{overflow-x:auto;border-top:2px solid var(--accent);font-size:.78rem;line-height:1.35}
+.tr{display:grid;grid-template-columns:minmax(9rem,1.1fr) repeat(3,minmax(8.5rem,1fr));min-width:40rem;border-bottom:1px solid var(--line)}
+.tr>*{padding:.4rem .5rem}
+.th>div{font-weight:700;color:var(--accent)}
+.tlab{text-decoration:none;color:var(--ink)}
+.tlab b{color:var(--accent);margin-right:.25rem}
+.tlab:hover{background:var(--accent-light)}
+.c{border-left:1px solid var(--line)}
+.c.all{grid-column:2 / span 3;background:var(--band)}
+.c.wave{border-left:3px double var(--accent)}
+.tln{font-size:.78rem;color:var(--grey);margin:.5rem 0 0}
+details.part,details.field{scroll-margin-top:5.5rem}
+
+/* ---- Leiste oben -------------------------------------------------- */
+.bar{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:2px solid var(--accent);
+  margin:1.2rem 0 1.4rem;padding:.6rem 0;display:flex;flex-wrap:wrap;gap:.5rem 1rem;
+  align-items:center;font-size:.85rem}
+.bar .who{font-weight:700}
+.bar .sp{flex:1}
+.bar input{font:inherit;padding:.35rem .5rem;border:1px solid var(--rule);min-width:14rem}
+button{font:inherit;font-size:.8rem;cursor:pointer;background:var(--bg);color:var(--ask-dark);
+  border:1px solid var(--ask-rule);padding:.3rem .65rem;border-radius:3px}
+button:hover{background:var(--ask-light)}
+button.main{background:var(--ask);color:#fff;border-color:var(--ask)}
+button.main:hover{background:var(--ask-dark)}
+button:disabled{opacity:.45;cursor:default;background:var(--bg)}
+.msg{color:var(--grey)}
+
+/* ---- Legende ------------------------------------------------------ */
+.legend{font-size:.82rem;line-height:1.5;border-bottom:1px solid var(--line);
+  padding:0 0 .9rem;margin:0 0 1.6rem;max-width:52rem}
+.legend p{margin:0 0 .35rem}
+.ico{width:1.3em;height:1.3em;vertical-align:-.32em;margin-right:.3em;
+  stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+
+/* ---- Teile und Felder --------------------------------------------- */
+details.part{border-top:3px solid var(--accent);margin:0 0 1.2rem}
+details.part>summary{list-style:none;cursor:pointer;padding:.7rem 0;display:flex;
+  flex-wrap:wrap;align-items:baseline;gap:.2rem 1rem}
+details.part>summary::-webkit-details-marker,details.field>summary::-webkit-details-marker,
+details.dec>summary::-webkit-details-marker{display:none}
+details.part>summary h2{margin:0;font-size:1.2rem;color:var(--accent)}
+.tw{display:inline-block;width:1em;color:var(--accent);font-family:var(--sans)}
+details[open]>summary .tw::before{content:"▾"}
+details:not([open])>summary .tw::before{content:"▸"}
+.counts{font-size:.78rem;color:var(--grey)}
+.partintro{font-size:.88rem;color:var(--grey);margin:0 0 .8rem;max-width:52rem}
+
+details.field{border-top:1px solid var(--line);margin-left:1rem}
+details.field>summary{list-style:none;cursor:pointer;padding:.55rem 0;display:grid;
+  grid-template-columns:auto 1fr auto;gap:.2rem .8rem;align-items:baseline}
+details.field>summary .fid{font-weight:700;color:var(--accent);font-size:.85rem;min-width:3.2rem}
+details.field>summary .ft{font-size:.95rem}
+.tag{font-size:.72rem;white-space:nowrap;color:var(--grey)}
+.tag b{font-weight:700;color:var(--ink)}
+.st{display:inline-block;border:1px solid var(--rule);padding:0 .4em;margin-left:.35em;border-radius:2px}
+.st.wait{border-style:dashed}
+.st.last{border-style:dotted}
+
+.cols{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);gap:1.4rem;padding:.3rem 0 1.4rem}
+.us{border-left:5px solid var(--ask);background:var(--ask-light);padding:.7rem .8rem;
+  font-family:var(--sans);font-size:.83rem;line-height:1.45}
+.app{border-left:5px double var(--accent);padding:.1rem 0 .1rem 1rem}
+.colhead{font-family:var(--sans);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;
+  font-weight:700;margin:0 0 .5rem}
+.us .colhead{color:var(--ask-dark)}
+.app .colhead{color:var(--accent)}
+.hint{color:var(--grey);font-size:.8rem;margin:0 0 .6rem}
+.app .hint{margin-top:-.2rem}
+.text p{margin:0 0 .9rem;white-space:pre-line}
+.text.empty{color:var(--grey);font-style:italic}
+.meta{font-size:.74rem;color:var(--grey);margin:.4rem 0 .5rem;display:flex;flex-wrap:wrap;gap:.3rem .9rem;align-items:center}
+.lock{color:var(--ask-dark);font-weight:700}
+textarea{width:100%;font:inherit;line-height:1.5;padding:.5rem;border:1px solid var(--rule);resize:vertical}
+.app textarea{font-family:var(--serif);font-size:1rem;min-height:14rem}
+.us textarea{font-family:var(--sans);font-size:.83rem;min-height:3.2rem;background:#fff}
+.row{display:flex;gap:.4rem;flex-wrap:wrap;align-items:center;margin:.4rem 0}
+
+/* ---- Notizen ------------------------------------------------------ */
+.nt{background:#fff;border:1px solid var(--ask-rule);padding:.45rem .6rem;margin:0 0 .5rem}
+.nt .by{font-weight:700;color:var(--ask-dark);font-size:.75rem}
+.nt .when{color:var(--grey);font-size:.72rem;margin-left:.4rem}
+.nt p{margin:.25rem 0 0;white-space:pre-wrap}
+.nt .acts{margin-top:.3rem}
+.nt .acts button{font-size:.7rem;padding:.1rem .4rem}
+.nt.fixed{border-style:dashed}
+
+/* ---- Entscheide --------------------------------------------------- */
+details.dec{background:#fff;border:1px solid var(--ask-rule);border-left:4px solid var(--ask);
+  padding:.45rem .6rem;margin:0 0 .6rem}
+details.dec>summary{list-style:none;cursor:pointer;color:var(--ask-dark);font-weight:700;font-size:.8rem}
+details.dec>summary .q{display:block;font-weight:400;color:var(--ink);margin-top:.15rem}
+details.dec .full{margin:.5rem 0;padding-top:.45rem;border-top:1px solid var(--ask-rule)}
+.dico{width:1.35em;height:1.35em;vertical-align:-.34em;margin-right:.35em;stroke:var(--ask);
+  fill:none;stroke-width:1.7}
+details.dec[open] .dico circle{fill:var(--ask)}
+details.dec[open] .dico text{fill:#fff}
+
+.us details.lit{background:#fff;border:1px dashed var(--ask-rule);padding:.4rem .6rem;margin:0 0 .6rem}
+.us details.lit summary{cursor:pointer;font-weight:700;color:var(--ask-dark);font-size:.78rem}
+.us details.lit ul{margin:.4rem 0 .3rem;padding-left:1rem}
+.us details.lit li{margin:0 0 .3rem}
+/* ---- Geschichte --------------------------------------------------- */
+.hist{border-top:1px solid var(--line);margin-top:.6rem;padding-top:.5rem;font-family:var(--sans);font-size:.8rem}
+.hist details{margin:0 0 .4rem}
+.hist summary{cursor:pointer;color:var(--grey)}
+.hist .old{font-family:var(--serif);font-size:.9rem;white-space:pre-wrap;background:var(--band);
+  padding:.5rem .7rem;margin:.3rem 0}
+
+table.adm{border-collapse:collapse;font-size:.88rem;margin:.2rem 0 1rem 1rem}
+table.adm td{padding:.3rem .8rem .3rem 0;border-bottom:1px solid var(--line);vertical-align:top}
+table.adm td:first-child{font-family:var(--sans);font-size:.78rem;color:var(--grey);white-space:nowrap}
+
+.gate{font-family:var(--sans);font-size:.85rem;color:var(--grey);font-style:italic}
+
+@media (max-width:52rem){
+  .cols{grid-template-columns:1fr}
+  .app{order:-1}
+  details.field{margin-left:0}
+  details.field>summary{grid-template-columns:auto 1fr}
+  details.field>summary .tag{grid-column:2}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<symbol id="i-decide" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><text x="12" y="17.4" text-anchor="middle" font-size="15.5" font-weight="800" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" fill="currentColor" stroke="none">?</text></symbol>
+<symbol id="i-prop" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><text x="12" y="17.3" text-anchor="middle" font-size="14.5" font-weight="800" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" fill="currentColor" stroke="none">P</text></symbol>
+</svg>
+<main>
+<h1>COMPASS</h1>
+<p class="exp"><b>C</b>ultivating <b>O</b>rientation in <b>M</b>athematics: <b>P</b>eer <b>A</b>ctivities in <b>S</b>orting and <b>S</b>tochastic quizzes</p>
+<p class="sub">Erasmus+ application, working copy for Henrike, Nils and Helmer · KA220-HED · form of the 2026 call, to be checked against 2027 in November</p>
+
+<details class="names" id="names">
+<summary><svg class="ico" style="stroke:var(--ask)"><use href="#i-prop"/></svg>Other expansions of COMPASS — <span id="namecount"></span>for discussion</summary>
+<ul id="namelist"></ul>
+<div id="namepropose"></div>
+<p class="nf">COMPASS is agreed: an instrument for orientation, and in English also the geometer’s compass. The expansion under the title is the current proposal; these are the alternatives. Suggest another here, and discuss under “The name” below. To be checked against the Erasmus+ Project Results Platform before we submit.</p>
+</details>
+
+<div class="bar" id="bar"></div>
+
+<section class="over" aria-label="The project at a glance">
+<h2 class="oh">The project at a glance</h2>
+<nav class="jump" aria-label="Parts of the form">
+<a href="#p-A">A · Context</a><a href="#p-B">B · Relevance</a><a href="#p-C">C · Partnership</a><a href="#p-D">D · Impact</a><a href="#p-E">E · Work packages</a><a href="#p-F">F · Summary</a><a href="#p-G">G · Formalities</a>
+</nav>
+<div class="tl" role="table" aria-label="Timeline">
+<div class="tr th" role="row"><div role="columnheader"></div><div role="columnheader">Year 1 · 2027/28</div><div role="columnheader">Year 2 · 2028/29</div><div role="columnheader">Year 3 · 2029/30</div></div>
+<div class="tr" role="row"><a class="tlab" href="#f-E1a" role="rowheader"><b>WP1</b> Coordination</a><div class="c all">kick-off · consortium agreement · ethics and data protection · two consortium meetings a year, at the three universities in turn</div></div>
+<div class="tr" role="row"><a class="tlab" href="#f-WP2" role="rowheader"><b>WP2</b> Design criteria and instruments</a><div class="c">first version · recording tool for university teaching · pilot</div><div class="c">revised after wave 1</div><div class="c">final version</div></div>
+<div class="tr" role="row"><a class="tlab" href="#f-WP3" role="rowheader"><b>WP3</b> Card sorting activities</a><div class="c">consolidate the eight sets</div><div class="c">revise after wave 1</div><div class="c">final version · sets on two further topics</div></div>
+<div class="tr" role="row"><a class="tlab" href="#f-WP3" role="rowheader"><b>WP3</b> Stochastic quiz</a><div class="c">build two to three activities</div><div class="c">first use · revise</div><div class="c">second use · final version</div></div>
+<div class="tr" role="row"><a class="tlab" href="#f-WP3" role="rowheader"><b>WP3</b> AI support for design</a><div class="c">extend Kasper · build the quiz assistant</div><div class="c">staff at three universities design with it</div><div class="c">guidelines · open documentation</div></div>
+<div class="tr" role="row"><a class="tlab" href="#f-WP4" role="rowheader"><b>WP4</b> Trial waves</a><div class="c wave">localise · wave 1 · card sorting as it is (baseline)</div><div class="c wave">localise · wave 2 · revised sets + quiz</div><div class="c wave">localise · wave 3 · further topics + revised quiz</div></div>
+<div class="tr" role="row"><a class="tlab" href="#f-WP4" role="rowheader"><b>WP4</b> Analysis and publication</a><div class="c">synthesis in the summer</div><div class="c">synthesis in the summer</div><div class="c">validation report · open publication · closing conference</div></div>
+</div>
+<p class="tln">Courses start in Lucerne in September, in Hamburg in October and in Oslo in January, so one trial wave is an academic year. The summers carry the revisions. Click a row to open its work package.</p>
+</section>
+
+<div class="legend">
+<p><b>Each field of the form opens on its own.</b> On the left, what is for us: notes, open decisions, what a field is waiting for. On the right, the application text as a reviewer will read it.</p>
+<p><svg class="ico" style="stroke:var(--ask)"><use href="#i-decide"/></svg><b>A circled question mark</b> is an open decision; open it to answer. <svg class="ico" style="stroke:var(--ask)"><use href="#i-prop"/></svg><b>A circled P</b> marks a proposal. The text on the right is edited by one person at a time — whoever presses “edit” holds the field until they save or cancel, and every earlier version is kept.</p>
+<p>The form shows the character limit of each field only once it is open online; until then, each field counts its characters.</p>
+</div>
+
+<div id="doc"></div>
+<p class="gate" style="margin-top:2rem">The earlier outline stays available: <a href="https://hallmendinger.github.io/topos-outline/">topos-outline</a>.</p>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script>
+(function(){
+'use strict';
+var SB_URL='https://reqjwzabpfsltxumyuoa.supabase.co';
+var SB_KEY='sb_publishable_Afpe7muzMYexYI_6r4m73Q_MWd2A2TF';
+var STALE_MIN=30;
+
+/* ---------- Die Entscheide (vom 26.09., auf der alten Seite schon offen) ---------- */
+var DEC={
+  1:['The project name','COMPASS is agreed. The current proposal for the expansion is under the title: Cultivating Orientation in Mathematics: Peer Activities in Sorting and Stochastic quizzes. The alternatives are in the box beneath it. Does the proposal work for you?'],
+  2:['Do we open the assistants for reuse?','Keep them as our own tools, use them within the project at all three universities, or publish them for anyone. We lean to the middle: the team first.'],
+  3:['Does the AI run during the Borel activity, or only while we build it?','If it only helps us build it, Borel ships as a self-contained file like the card sets, and anyone can use it. If it runs live, every user needs their own AI access, and the assistant has to be published with it.'],
+  4:['What do we each count as our own contribution?','Nothing is declared or evidenced. What can each institution realistically put in beside the grant?'],
+  5:['Who leads the Borel strand?','The activity and its assistant belong with the same person. BorelGPT comes from Hamburg, the game-based expertise from Oslo.'],
+  6:['How many hours can each of us contribute?','About 13 PM from the three of us together. The split need not be even.'],
+  7:['How do we staff the research posts — and could they be doctoral posts?','About 21 PM in all, a little over half a post; the split should follow the work. A doctoral post would have to be applied for here, and the hours would grow. Nils, could Hamburg bring one in?'],
+  8:['Where does the technical work sit?','About 9 PM, a quarter of a post, separate from the research posts. At which university?'],
+  9:['How much data do the revisions need?','Process data is free; audio and coding are not. Four groups on two activities per university and wave come to some 54 hours of audio — enough for two people. More needs more staff.'],
+  10:['Is there a course for the transfer topics in Hamburg or Oslo?','If either topic has a place in your teaching, the third wave can collect on the transfer at more than one site.'],
+  11:['Do we look for a fourth partner?','With three partners, losing one means we cannot submit. A fourth would have to bring something we genuinely lack — and would not help if we lose Switzerland. Do you see one?'],
+  13:['Can we name lecturers outside our three universities?','B2 and B3 are written cautiously: in the final year, a lecturer who was not involved in the design uses the activities. The strong version would read — B2: “… and lecturers at other institutions take it up in the final year.” B3: “… and in the final year lecturers at other institutions use them in their own teaching, so that what works in one place can be shown to work elsewhere.” For that we need two or three colleagues, for instance through INDRUM or ERME, who commit before we submit and join as associated partners. Who could we ask?'],
+  14:['Are the trials in Hamburg and Oslo secured?','B7, B12 and B14 say that the activities are trialled in regular courses at all three universities. Earlier planning had Lucerne from September, Hamburg from October and Oslo from January. Can each of you confirm a course in which the activities can run in each of the three years?'],
+  15:['Who hosts the platform after the project?','D2 promises that the platform stays online beyond 2030. That needs one of our universities to commit to hosting it. Lucerne is the first choice; the question to IT there is still open. AI support is not promised beyond the project.'],
+  12:['Where else could we submit this?','If Switzerland is not associated, Erasmus+ is closed to us. Do you know another programme or foundation for a project like this?']
+};
+
+/* ---------- Der Aufbau des Formulars ------------------------------------------ */
+/* f: [id, Titel, Hinweis links, {dec:[..], wait:'...', last:true}] */
+var PARTS=[
+ {id:'A', title:'A · Context', intro:'Administrative fields, filled in provisionally.',
+  fields:[['A-title','Project title','Acronym and its expansion here; the rest goes into the summary.',{dec:[1]}],
+          ['A-admin','Field, dates, National Agency, language, lump sum','Provisional. The National Agency depends on Switzerland’s association to Erasmus+ from the 2027 call: the Council of States approved the credit on 1 October 2026, the National Council is expected to decide in December. The ECHE has been applied for.',{dec:[11,12]}]]},
+ {id:'B', title:'B · Relevance of the project', fields:[
+   ['B1','Priorities','Based on the 2026 call; to be updated for 2027.',{}],
+   ['B2','How does the project address the selected priorities?','',{dec:[13]}],
+   ['B3','Motivation — why should it be funded?','Notes on how we frame the project are collected here.',{dec:[13],lit:[
+     ['Klein’s double discontinuity','Klein, F. (1908; Engl. 1932/2016). Elementary Mathematics from a Higher Standpoint, Vol. I.'],
+     ['Student teachers find their mathematics studies remote from teaching','Cooney & Wiegel (2003), in Second International Handbook of Mathematics Education · Hefendehl-Hebeker (2013)'],
+     ['Decades of research and development','Ableitinger, Kramer & Prediger (2013) · Winsløw & Grønbæk (2014) · Wasserman (2018) · Eichler & Isaev (2023) and Weber, Heinze & Lindmeier (2024): interventions prevent a decline in relevance beliefs but bring no clear improvement · Hoffmann & Biehler (2023): effects partial and context-dependent'],
+     ['Teachers’ in-the-moment decisions','Schoenfeld (2011), ZDM 43 · Blömeke, Gustafsson & Shavelson (2015): competence as a continuum, situation-specific skills'],
+     ['Mathematical orientation','Allmendinger, Aslaksen & Buchholtz (2023), ZDM 55, 851–865 · INDRUM 2024 · BzMU 2025 · Festschrift chapter “Pfade legen, Brücken schlagen” · Allmendinger (2026), DMV'],
+     ['Philosophy of orientation','Stegmaier, W. (2019). What is Orientation? A Philosophical Investigation. De Gruyter.'],
+     ['Classifying tasks','Malcolm Swan’s classifying tasks — exact reference to be added'],
+     ['The stochastic quiz','mathematik lehren 229 (2021) · two GAME papers, ERME 2025 · Allmendinger, Aslaksen & Buchholtz, From Game to Classroom (MTED, accepted 2026)'],
+     ['AI supporting teacher work','Bastian, Buchholtz & Kaiser (2025), Frontiers in Education · Buchholtz & Huget (2024), MEDA 4']
+   ]}],
+   ['B4','Objectives and concrete results','',{dec:[2,3],lit:[
+     ['A platform for open mathematical tasks','Matthias Ludwig (Frankfurt): MathCityMap — tasks on a web portal with an app and a community of authors; a model for the project platform'],
+     ['AI in teacher education','Bastian, Buchholtz & Kaiser (2025), Frontiers in Education · Buchholtz & Huget (2024), MEDA 4 · MTED (accepted 2026): the pedagogical judgement stays with the teacher'],
+     ['Regulation','EU AI Act — transparency obligations for the assistant; to be checked before submission'],
+     ['Groundwork','SORT (Milton Ray Hartmann foundation, until 2027): card sorting activities, the assistant Kasper, the capture tool; all results to be published as OER']
+   ]}],
+   ['B5','What makes your proposal innovative?','The field the application hangs on. A complement to interface tasks, not a critique of them.',{lit:[
+     ['Interface tasks','Bauer, T. (2013). Schnittstellen bearbeiten in Schnittstellenaufgaben · Isaev, Eichler & Loose (Eds., 2022) · “Using academic mathematical knowledge when working on interface tasks – analyses of pre-service teachers’ arguments about rotationally symmetric figures” (ZDM, authors to be added)'],
+     ['Teacher-oriented tasks','Eichler & Isaev (2022). Improving prospective teachers’ beliefs about a double discontinuity between school mathematics and university mathematics. Journal für Mathematik-Didaktik · “Welchen Effekt haben Lehramtsaufgaben auf die Wahrnehmung von Studierenden zur doppelten Diskontinuität?” (JMD 2023, authors to be checked)'],
+     ['Professional learning tasks','“Linking University and School Mathematics Teaching: The Role of Professional Learning Tasks” (Springer, authors to be added)'],
+     ['Situated assignments','“Getting knowledge ready for teaching through situated assignments? An intervention study in initial mathematics teacher education” (Educational Studies in Mathematics, 2026) — new, to be read'],
+     ['Tasks do different things','“Typisierung von Aufgaben zur Verbindung zwischen schulischer und akademischer Mathematik” (Springer chapter, authors to be added) — check whether it already distinguishes paths and links'],
+     ['Effects of such tasks','Eichler & Isaev (2022): relevance beliefs did not decline in the intervention group · Weber, Heinze & Lindmeier (2024): no clear improvement · Hoffmann & Biehler (2023): effects partial and context-dependent'],
+     ['School-related content knowledge','Dreher, Lindmeier, Heinze & Niemand (2018). What kind of content knowledge do secondary mathematics teachers need? Journal für Mathematik-Didaktik'],
+     ['Paths and links','Allmendinger, Aslaksen & Buchholtz (2023), ZDM · INDRUM 2024 · Allmendinger (2026), DMV'],
+     ['One mathematical landscape','Wasserman (2016, 2018) · Davis & Hersh (1998)']
+   ]}],
+   ['B6','Synergies between fields of education','',{lit:[['Classifying tasks','Malcolm Swan’s classifying tasks — exact reference to be added'],['Borel in school','mathematik lehren 229 (2021) · MTED (accepted 2026): classroom implementations in all three countries']]}],
+   ['B7','European added value','',{dec:[14]}],
+   ['B8','Follow-up of a previous Erasmus+ project?','',{}],
+   ['B9','Follow-up of a project under other instruments?','',{}],
+   ['B10','Synergies with other initiatives?','',{}],
+   ['B11','What needs do you want to address?','',{}],
+   ['B12','Target groups, and how we engage with them','',{dec:[13,14]}],
+   ['B13','How did you identify these needs?','',{lit:[['Framework paper, 85 reflections','Allmendinger, Aslaksen & Buchholtz (2023), ZDM 55, 851–865 — discussion: perspectives mostly content-related; reference maps not visible because students were not asked to locate content'],['Borel findings','Allmendinger, Aslaksen & Buchholtz, From Game to Classroom (MTED, accepted 2026): groups converge on the most compelling rather than the soundest approach; individual written justification before group consensus works better'],['Klein','Allmendinger (2014), Felix Kleins Elementarmathematik vom höheren Standpunkte aus, Siegen · JMD 37 (2016) · ICME-13 Monographs (2019)'],['Nils','LUECKE: which thesis or study is meant, and its finding']]}],
+   ['B14','How will the project address them?','',{dec:[10,14]}]
+ ]},
+ {id:'C', title:'C · Partnership and cooperation arrangements', fields:[
+   ['C1','How did you form your partnership?','',{}],
+   ['C2','Task allocation','Proposal — who leads which work package is ours to settle together; the shares follow the work, not an even split.',{dec:[5,6,7,8]}],
+   ['C3','Coordination and communication','',{}]
+ ]},
+ {id:'D', title:'D · Impact and dissemination', fields:[
+   ['D1','How will you assess whether the objectives are achieved?','',{}],
+   ['D2','Sustainability','',{dec:[15]}],
+   ['D3','Dissemination','',{}],
+   ['D4','At which level, and how?','',{}]
+ ]},
+ {id:'E', title:'E · Project design and implementation', intro:'Four work packages. WP1 project management has seven questions and a grant amount; work packages 2 to 4 have six questions each, and every work package lists its activities.', fields:[
+   ['E1a','WP1 · Monitoring — staff, timing, frequency','',{}],
+   ['E1b','WP1 · Budget control and time management','',{dec:[4]}],
+   ['E1c','WP1 · Risks','',{}],
+   ['E1d','WP1 · Accessibility and inclusion','',{}],
+   ['E1e','WP1 · Digital tools in the cooperation','',{}],
+   ['E1f','WP1 · Green practices','',{}],
+   ['E1g','WP1 · Participation and civic engagement','',{}],
+   ['E1h','WP1 · Grant amount','Open: whether EUR 55,000 carries both the working time and the travel. At the rates used so far, working time comes to about 30,000 and travel to about 22,500, which leaves little for the closing conference.',{}],
+   ['WP2','WP2 · Design criteria and instruments — six questions','Specific objectives · main results · qualitative indicators · quantitative indicators · tasks of each organisation · grant amount. Proposal: lead Hamburg. Amounts provisional until the three full-cost rates are known.',{}],
+   ['WP3','WP3 · Activities and AI-supported design — six questions','Proposal: lead Lucerne. The AI support is part of developing the activities, not a separate product. Amounts provisional.',{dec:[2,3,5,10]}],
+   ['WP4','WP4 · Trials, validation and open publication — six questions','Proposal: lead Oslo. Amounts provisional.',{dec:[9,14,15]}],
+   ['ACT2','Activities of WP2','Per activity the form asks for title, venue, start, end, leading and participating organisations, amount, expected results, and a description with the number and profile of participants.',{}],
+   ['ACT3','Activities of WP3','',{dec:[5,10]}],
+   ['ACT4','Activities of WP4','',{dec:[14]}]
+ ]},
+ {id:'F', title:'F · Project summary', fields:[
+   ['F','Objectives · Implementation · Results','Published if the project is funded. A first draft from the fields as they stand; to be rewritten last, from the finished application.',{}]
+ ]},
+ {id:'G', title:'G · Formalities', fields:[['G','Annexes, declaration, checklist','',{}]]}
+];
+var ADMIN=[['Field','Higher Education'],['Start','01/09/2027'],['Duration','36 months'],['End','31/08/2030'],
+  ['National Agency','Movetia, if Switzerland coordinates — depends on the association'],['Language','EN'],['Lump sum','400 000 EUR']];
+
+var FIELD={}; PARTS.forEach(function(p){ p.fields.forEach(function(f){ FIELD[f[0]]={id:f[0],title:f[1],hint:f[2],o:f[3],part:p,textless:(p.nofieldtext||[]).indexOf(f[0])>=0}; }); });
+
+/* ---------- Hilfen ---------------------------------------------------------------- */
+function el(tag,cls,txt){ var e=document.createElement(tag); if(cls) e.className=cls; if(txt!=null) e.textContent=txt; return e; }
+function when(ts){ if(!ts) return ''; var d=new Date(ts);
+  return d.toLocaleDateString('en-GB',{day:'numeric',month:'short'})+', '+d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'}); }
+function paras(node,txt){ node.textContent=''; (txt||'').split(/\n\s*\n/).forEach(function(t){ if(t.trim()){ var p=el('p'); p.textContent=t.trim(); node.appendChild(p);} }); }
+function chars(t){ return (t||'').length.toLocaleString('en-GB').replace(/,/g,' '); }
+function stale(ts){ return !ts || (Date.now()-new Date(ts).getTime()) > STALE_MIN*60000; }
+
+/* ---------- Zustand ---------------------------------------------------------------- */
+var sb=null, me=null, texts={}, notes=[], editing=null;
+try{ sb=window.supabase.createClient(SB_URL,SB_KEY); }catch(e){ sb=null; }
+
+/* ---------- Gerüst ---------------------------------------------------------------- */
+var doc=document.getElementById('doc'), openState={};
+try{ openState=JSON.parse(localStorage.getItem('erasmus-open-v2')||'{}'); }catch(e){}
+function remember(id,open){ openState[id]=open; try{ localStorage.setItem('erasmus-open-v2',JSON.stringify(openState)); }catch(e){} }
+
+function buildDec(n,host){
+  var d=el('details','dec'); var s=el('summary');
+  s.innerHTML='<svg class="dico"><use href="#i-decide"/></svg>';
+  s.appendChild(document.createTextNode('DECISION '+n));
+  s.appendChild(el('span','q',DEC[n][0])); d.appendChild(s);
+  d.appendChild(el('div','full',DEC[n][1]));
+  var box=el('div','live'); box.dataset.anchor='dec-'+n; d.appendChild(box);
+  host.appendChild(d);
+}
+function buildField(F,host){
+  var d=el('details','field'); d.id='f-'+F.id; d.open=!!openState[F.id];
+  d.addEventListener('toggle',function(){ remember(F.id,d.open); });
+  var s=el('summary'); s.appendChild(el('span','fid',F.id.indexOf('across')===0?'':F.id));
+  s.appendChild(el('span','ft',F.title)); var tag=el('span','tag'); s.appendChild(tag); d.appendChild(s);
+  var cols=el('div','cols');
+  var us=el('div','us'); us.appendChild(el('div','colhead','For us'));
+  if(F.hint && !F.textless) us.appendChild(el('p','hint',F.hint));
+  if(F.o.wait) us.appendChild(el('p','hint','Waiting — '+F.o.wait));
+  if(F.o.lit){ var ld=el('details','lit'); ld.appendChild(el('summary',null,'Literature we could draw on — not for the form'));
+    var ul=el('ul'); F.o.lit.forEach(function(l){ var li=el('li'); li.appendChild(el('b',null,l[0]+': ')); li.appendChild(document.createTextNode(l[1])); ul.appendChild(li); });
+    ld.appendChild(ul); ld.appendChild(el('p','hint','The form has no references. This list is for us — to know which claim rests on what, and for a later SNF or DFG application.'));
+    us.appendChild(ld); }
+  (F.o.dec||[]).forEach(function(n){ buildDec(n,us); });
+  var live=el('div','live'); live.dataset.anchor=F.id; us.appendChild(live);
+  cols.appendChild(us);
+  var app=el('div','app');
+  if(F.textless){ app.appendChild(el('div','colhead','Background'));
+    if(F.hint) paras(app.appendChild(el('div','text')),F.hint); else app.appendChild(el('p','hint','Notes and decisions only — no form field.')); }
+  else { app.appendChild(el('div','colhead','Application text')); var box=el('div','tbox'); box.dataset.field=F.id; app.appendChild(box); }
+  cols.appendChild(app); d.appendChild(cols); host.appendChild(d);
+}
+PARTS.forEach(function(p){
+  var d=el('details','part'); d.id='p-'+p.id; d.open=openState['part-'+p.id]===true;
+  d.addEventListener('toggle',function(){ remember('part-'+p.id,d.open); });
+  var s=el('summary'); var h=el('h2'); h.appendChild(el('span','tw')); h.appendChild(document.createTextNode(p.title));
+  s.appendChild(h); s.appendChild(el('span','counts')); d.appendChild(s);
+  if(p.intro) d.appendChild(el('p','partintro',p.intro));
+  if(p.admin){ var t=el('table','adm'); ADMIN.forEach(function(r){ var tr=el('tr'); tr.appendChild(el('td','',r[0])); tr.appendChild(el('td','',r[1])); t.appendChild(tr); }); d.appendChild(t); }
+  p.fields.forEach(function(f){ buildField(FIELD[f[0]],d); });
+  doc.appendChild(d);
+});
+
+
+/* ---------- Sprungmarken oeffnen ihr Ziel ------------------------------------- */
+document.querySelectorAll('.over a[href^="#"]').forEach(function(a){
+  a.addEventListener('click',function(e){
+    var t=document.querySelector(a.getAttribute('href')); if(!t) return; e.preventDefault();
+    var part=t.classList.contains('part')?t:t.closest('details.part');
+    if(part) part.open=true; if(t.classList.contains('field')) t.open=true;
+    t.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+});
+
+/* ---------- Leiste: anmelden ------------------------------------------------------- */
+var bar=document.getElementById('bar');
+function renderBar(msg){
+  bar.textContent='';
+  if(!sb){ bar.appendChild(el('span','msg','The connection to the shared database could not be loaded. Reload the page.')); return; }
+  if(!me){
+    bar.appendChild(el('span','','Sign in to read and write:'));
+    var i=el('input'); i.type='email'; i.placeholder='your e-mail address'; i.autocomplete='email';
+    var b=el('button','main','Send me a sign-in link');
+    b.onclick=async function(){
+      var v=i.value.trim(); if(!v) return; b.disabled=true;
+      var r=await sb.auth.signInWithOtp({email:v,options:{shouldCreateUser:false,emailRedirectTo:location.origin+location.pathname}});
+      b.disabled=false;
+      renderBar(r.error ? 'That did not work. Is this the address you were invited with? ('+r.error.message+')'
+                        : 'Check your inbox — the link signs you in on this page.');
+    };
+    i.addEventListener('keydown',function(e){ if(e.key==='Enter') b.click(); });
+    bar.appendChild(i); bar.appendChild(b);
+  } else if(!me.name){
+    bar.appendChild(el('span','','Your name, as the others should see it:'));
+    var n=el('input'); n.placeholder='e.g. Henrike';
+    var ok=el('button','main','Save');
+    ok.onclick=async function(){ var v=n.value.trim(); if(!v) return; ok.disabled=true;
+      await sb.auth.updateUser({data:{name:v}}); await sb.auth.refreshSession(); };
+    bar.appendChild(n); bar.appendChild(ok);
+  } else {
+    bar.appendChild(document.createTextNode('Signed in as ')); bar.appendChild(el('span','who',me.name));
+    var out=el('button','','sign out'); out.onclick=function(){ sb.auth.signOut(); };
+    bar.appendChild(out);
+  }
+  bar.appendChild(el('span','sp'));
+  var all=el('button','','open all'); all.onclick=function(){ document.querySelectorAll('details.part,details.field').forEach(function(d){ d.open=true; }); };
+  var none=el('button','','close all'); none.onclick=function(){ document.querySelectorAll('details.part,details.field').forEach(function(d){ d.open=false; }); };
+  bar.appendChild(all); bar.appendChild(none);
+  if(msg){ var m=el('span','msg',msg); m.style.flexBasis='100%'; bar.appendChild(m); }
+}
+
+/* ---------- Antragstext ------------------------------------------------------------ */
+function lockedByOther(r){ return r && r.editing_by && r.editing_by!==me.email && !stale(r.editing_since); }
+function renderText(fid){
+  var box=document.querySelector('.tbox[data-field="'+fid+'"]'); if(!box) return;
+  if(editing && editing.fid===fid) return;           // nicht unter den Fingern wegziehen
+  box.textContent='';
+  if(!me || !me.name){ box.appendChild(el('p','gate','Sign in to see the text.')); return; }
+  var r=texts[fid], body=r?r.body:'';
+  var t=el('div','text'+(body.trim()?'':' empty')); box.appendChild(t);
+  if(body.trim()) paras(t,body); else t.textContent= FIELD[fid].o.wait ? 'Not written yet.' : 'No text yet.';
+  var m=el('div','meta'); box.appendChild(m);
+  m.appendChild(el('span','',chars(body)+' characters'));
+  if(r && r.updated_name) m.appendChild(el('span','','last changed by '+r.updated_name+', '+when(r.updated_at)));
+  else if(body.trim()) m.appendChild(el('span','','draft of 13 Sep'));
+  if(lockedByOther(r)) m.appendChild(el('span','lock','✎ '+(r.editing_name||'someone')+' is editing since '+when(r.editing_since)));
+  var row=el('div','row'); box.appendChild(row);
+  var ed=el('button','','edit'); ed.disabled=lockedByOther(r); ed.onclick=function(){ startEdit(fid); }; row.appendChild(ed);
+  var hb=el('button','','earlier versions'); hb.onclick=function(){ showHistory(fid,box,hb); }; row.appendChild(hb);
+}
+async function takeLock(fid){
+  var now=new Date().toISOString(), old=new Date(Date.now()-STALE_MIN*60000).toISOString();
+  var lock={editing_by:me.email,editing_name:me.name,editing_since:now};
+  if(!texts[fid]){
+    var ins=await sb.from('field_text').insert(Object.assign({field:fid,body:''},lock));
+    if(!ins.error) return true;
+  }
+  var up=await sb.from('field_text').update(lock).eq('field',fid)
+    .or('editing_by.is.null,editing_since.lt."'+old+'",editing_by.eq."'+me.email+'"').select();
+  return !up.error && up.data && up.data.length>0;
+}
+async function startEdit(fid,start){
+  var box=document.querySelector('.tbox[data-field="'+fid+'"]');
+  if(editing && editing.fid!==fid){ alert('You are still editing '+editing.fid+'. Save or cancel there first.'); return; }
+  var ok=await takeLock(fid);
+  if(!ok){ await loadTexts(); alert('Someone else has just started editing this field.'); return; }
+  editing={fid:fid};
+  var r=texts[fid]; box.textContent='';
+  var ta=el('textarea'); ta.value= start!=null ? start : (r?r.body:''); box.appendChild(ta);
+  var m=el('div','meta'); var c=el('span','',chars(ta.value)+' characters'); m.appendChild(c); box.appendChild(m);
+  ta.addEventListener('input',function(){ c.textContent=chars(ta.value)+' characters'; });
+  var row=el('div','row'); box.appendChild(row);
+  var sv=el('button','main','save'); var cn=el('button','','cancel');
+  row.appendChild(sv); row.appendChild(cn);
+  sv.onclick=async function(){ sv.disabled=cn.disabled=true;
+    var res=await sb.from('field_text').update({body:ta.value,editing_by:null,editing_name:null,editing_since:null}).eq('field',fid);
+    if(res.error){ sv.disabled=cn.disabled=false; alert('Could not save: '+res.error.message+'\nYour text is still in the box.'); return; }
+    editing=null; await loadTexts(); };
+  cn.onclick=async function(){ editing=null;
+    await sb.from('field_text').update({editing_by:null,editing_name:null,editing_since:null}).eq('field',fid).eq('editing_by',me.email);
+    await loadTexts(); };
+  ta.focus();
+}
+async function showHistory(fid,box,btn){
+  var old=box.querySelector('.hist'); if(old){ old.remove(); return; }
+  var h=el('div','hist'); box.appendChild(h); h.textContent='Loading …';
+  var r=await sb.from('field_text_history').select('*').eq('field',fid).order('id',{ascending:false});
+  h.textContent='';
+  if(r.error||!r.data.length){ h.appendChild(el('span','msg','No earlier versions yet.')); return; }
+  r.data.forEach(function(v){
+    var d=el('details'); var s=el('summary',null,(v.saved_name?v.saved_name+', '+when(v.saved_at):'draft of 13 Sep')+' · '+chars(v.body)+' characters');
+    d.appendChild(s); d.appendChild(el('div','old',v.body));
+    var use=el('button','','use this version'); use.onclick=function(){ startEdit(fid,v.body); };
+    d.appendChild(use); h.appendChild(d);
+  });
+}
+
+/* ---------- Notizen ---------------------------------------------------------------- */
+function renderNotes(){
+  document.querySelectorAll('.live').forEach(function(box){
+    var a=box.dataset.anchor; var keep=box.querySelector('textarea.new'); var draft=keep?keep.value:'';
+    box.textContent='';
+    if(!me || !me.name){ if(!a.indexOf('dec-')) return; box.appendChild(el('p','gate','Sign in to see our notes.')); return; }
+    notes.filter(function(n){ return n.anchor===a; }).forEach(function(n){
+      var mine=n.author===me.email, fixed=n.author.indexOf('@')<0;
+      var d=el('div','nt'+(fixed?' fixed':'')); d.appendChild(el('span','by',n.author_name||n.author));
+      d.appendChild(el('span','when',when(n.created_at)+(n.updated_at&&new Date(n.updated_at)-new Date(n.created_at)>60000?' · edited':'')));
+      var p=el('p',null,n.body); d.appendChild(p);
+      if(mine){ var acts=el('div','acts');
+        var e=el('button','','edit'); e.onclick=function(){
+          var ta=el('textarea'); ta.value=n.body; p.replaceWith(ta); acts.textContent='';
+          var s=el('button','main','save'); s.onclick=async function(){ await sb.from('notes').update({body:ta.value}).eq('id',n.id); loadNotes(); };
+          var c=el('button','','cancel'); c.onclick=function(){ renderNotes(); };
+          acts.appendChild(s); acts.appendChild(c); ta.focus(); };
+        var x=el('button','','delete'); x.onclick=async function(){ if(confirm('Delete this note?')){ await sb.from('notes').delete().eq('id',n.id); loadNotes(); } };
+        acts.appendChild(e); acts.appendChild(x); d.appendChild(acts); }
+      box.appendChild(d);
+    });
+    var ta=el('textarea','new'); ta.placeholder=a.indexOf('dec-')===0?'Your answer …':'Add a note …'; ta.value=draft; box.appendChild(ta);
+    var add=el('button','','add'); add.onclick=async function(){ var v=ta.value.trim(); if(!v) return; add.disabled=true;
+      var r=await sb.from('notes').insert({anchor:a,body:v});
+      if(r.error){ add.disabled=false; alert('Could not save the note: '+r.error.message); return; }
+      ta.value=''; loadNotes(); };
+    var row=el('div','row'); row.appendChild(add); box.appendChild(row);
+  });
+  renderNames();
+  renderCounts();
+}
+
+
+/* ---------- Namen: wählen oder vorschlagen -------------------------------------- */
+var NAMES=[
+ ['compass-strands-part','<b>COMPASS</b> — <b>C</b>ultivating <b>O</b>rientation in <b>M</b>athematics: <b>P</b>articipatory <b>A</b>ctivities in <b>S</b>orting and <b>S</b>tochastic quizzes<br><span>mathematical orientation in university teacher education</span>'],
+ ['compass-strands-pos','<b>COMPASS</b> — <b>C</b>ultivating <b>O</b>rientation in <b>M</b>athematics: <b>P</b>osition-taking <b>A</b>ctivities in <b>S</b>orting and <b>S</b>tochastic quizzes<br><span>mathematical orientation in university teacher education</span>'],
+ ['compass-peer','<b>COMPASS</b> — <b>C</b>ultivating <b>O</b>rientation in <b>M</b>athematics: <b>P</b>eer <b>A</b>ctivities for <b>S</b>hared reasoning and <b>S</b>tance-taking<br><span>card sorting and stochastic quizzes in university teacher education</span>'],
+ ['compass-persp','<b>COMPASS</b> — <b>C</b>ultivating <b>O</b>rientation in <b>M</b>athematics: <b>P</b>erspective-building <b>A</b>ctivities for <b>S</b>hared reasoning and <b>S</b>tance-taking<br><span>card sorting and stochastic quizzes in university teacher education</span>'],
+ ['compass-pa','<b>COMPASS</b> — <b>C</b>ultivating <b>O</b>rientation in <b>M</b>athematics: <b>P</b>erspectives and <b>A</b>ttitudes through <b>S</b>hared reasoning and <b>S</b>tance-taking<br><span>card sorting and stochastic quizzes in university teacher education</span>'],
+ ['compass-cc','<b>COMPASS</b> — <b>C</b>onversations and <b>C</b>hoices for <b>O</b>rientation in <b>M</b>athematics: <b>P</b>eer <b>A</b>ctivities in <b>S</b>orting and <b>S</b>tochastic quizzes<br><span>mathematical orientation in university teacher education</span>']
+];
+function renderNames(){
+  var ul=document.getElementById('namelist'), pr=document.getElementById('namepropose');
+  ul.textContent=''; pr.textContent='';
+  var inn=!!(me&&me.name);
+  var props=notes.filter(function(n){ return n.anchor==='name-proposal'; });
+  NAMES.forEach(function(x){ var li=el('li'); li.innerHTML=x[1]; ul.appendChild(li); });
+  props.forEach(function(p){ var li=el('li'); li.appendChild(el('b',null,p.body));
+    li.appendChild(el('span','by',' — suggested by '+(p.author_name||'someone')));
+    if(inn && p.author===me.email){ var x=el('button','','remove'); x.style.marginLeft='.5rem'; x.style.fontSize='.7rem';
+      x.onclick=async function(){ if(!confirm('Remove your suggestion?')) return; await sb.from('notes').delete().eq('id',p.id); loadNotes(); };
+      li.appendChild(x); }
+    ul.appendChild(li); });
+  document.getElementById('namecount').textContent=(NAMES.length+props.length)+' · ';
+  if(inn){
+    var row=el('div','prop'); var i=el('input'); i.placeholder='Suggest another expansion of COMPASS …';
+    var b=el('button','main','suggest'); b.onclick=async function(){ var v=i.value.trim(); if(!v) return; b.disabled=true;
+      var res=await sb.from('notes').insert({anchor:'name-proposal',body:v});
+      if(res.error){ b.disabled=false; alert('Could not save: '+res.error.message); return; } loadNotes(); };
+    i.addEventListener('keydown',function(e){ if(e.key==='Enter') b.click(); });
+    row.appendChild(i); row.appendChild(b); pr.appendChild(row);
+  } else pr.appendChild(el('p','by','Sign in to suggest another expansion.'));
+}
+
+/* ---------- Zählungen in den Zusammenfassungen --------------------------------------- */
+function renderCounts(){
+  PARTS.forEach(function(p){
+    var nText=0,nWait=0,nNotes=0,nDec=0;
+    p.fields.forEach(function(f){
+      var F=FIELD[f[0]], body=(texts[F.id]&&texts[F.id].body||'').trim();
+      var anchors=[F.id].concat((F.o.dec||[]).map(function(n){ return 'dec-'+n; }));
+      var nn=notes.filter(function(n){ return anchors.indexOf(n.anchor)>=0; }).length;
+      var tag=document.querySelector('#f-'+F.id+' > summary .tag'); tag.textContent='';
+      if(me && me.name && !F.textless){
+        var st = body ? ['','text'] : F.o.last ? ['last','written last'] : F.o.wait ? ['wait','waiting'] : ['wait','empty'];
+        if(body) nText++; else nWait++;
+        tag.appendChild(el('span','st '+st[0],st[1]));
+      }
+      if(F.o.dec&&F.o.dec.length){ nDec+=F.o.dec.length; tag.appendChild(el('span','st','? '+F.o.dec.length)); }
+      if(nn){ nNotes+=nn; tag.appendChild(el('span','st',nn+(nn>1?' notes':' note'))); }
+    });
+    var c=document.querySelector('#p-'+p.id+' > summary .counts'); var bits=[];
+    if(me && me.name && p.id!=='X'){ if(nText) bits.push(nText+' with text'); if(nWait) bits.push(nWait+' waiting or empty'); }
+    if(nDec) bits.push(nDec+(nDec>1?' decisions':' decision'));
+    if(nNotes) bits.push(nNotes+(nNotes>1?' notes':' note'));
+    c.textContent=bits.join(' · ');
+  });
+}
+
+/* ---------- Laden und live halten ----------------------------------------------------- */
+async function loadTexts(){
+  if(!me||!me.name) return;
+  var r=await sb.from('field_text').select('*'); if(r.error) return;
+  texts={}; r.data.forEach(function(x){ texts[x.field]=x; });
+  Object.keys(FIELD).forEach(renderText); renderCounts();
+}
+async function loadNotes(){
+  if(!me||!me.name){ notes=[]; renderNotes(); return; }
+  var r=await sb.from('notes').select('*').order('created_at'); if(r.error) return;
+  notes=r.data; renderNotes();
+}
+var channel=null, tT=null, tN=null;
+function subscribe(){
+  if(channel) return;
+  channel=sb.channel('antrag')
+    .on('postgres_changes',{event:'*',schema:'public',table:'field_text'},function(){ clearTimeout(tT); tT=setTimeout(loadTexts,300); })
+    .on('postgres_changes',{event:'*',schema:'public',table:'notes'},function(){ clearTimeout(tN); tN=setTimeout(loadNotes,300); })
+    .subscribe();
+}
+function setSession(session){
+  var u=session&&session.user;
+  me = u ? {email:u.email, name:(u.user_metadata&&u.user_metadata.name)||''} : null;
+  renderBar();
+  if(me&&me.name){ loadTexts(); loadNotes(); subscribe(); }
+  else { texts={}; notes=[]; Object.keys(FIELD).forEach(renderText); renderNotes();
+         if(channel){ sb.removeChannel(channel); channel=null; } }
+}
+if(sb){
+  sb.auth.onAuthStateChange(function(ev,session){ setTimeout(function(){ setSession(session); },0); });
+  window.addEventListener('pagehide',function(){
+    if(editing&&me) sb.from('field_text').update({editing_by:null,editing_name:null,editing_since:null}).eq('field',editing.fid).eq('editing_by',me.email);
+  });
+} else setSession(null);
+})();
+</script>
+</body>
+</html>
