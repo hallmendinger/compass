@@ -311,7 +311,7 @@ var DEC={
   5:['Who leads the stochastic quiz?','Henrike’s proposal: Helmer leads the stochastic quiz, with his experience in game-based learning as its own work package, WP3. Does that work for you, Helmer and Nils?'],
   6:['How many hours can each of us contribute?','About 13 PM from the three of us together. The split need not be even.'],
   7:['How do we staff the research posts — and could they be doctoral posts?','About 21 PM in all, a little over half a post; the split should follow the work. A doctoral post would have to be applied for here, and the hours would grow. Nils, could Hamburg bring one in?'],
-  8:['Where does the technical work sit?','Henrike’s proposal: with the work it serves, not all in Lucerne. Lucerne consolidates the eight card sorting sets and adapts the recording tool, both of which come from SORT. Oslo builds the quiz activities, including their technical side. Hamburg builds the platform and the AI part of the quiz assistant. Together that is about seven person-months. With this, the work comes to about 40 % in Lucerne and 30 % each in Hamburg and Oslo – see the budget overview. Does that work for you?'],
+  8:['Where does the technical work sit?','Henrike’s proposal: with the work it serves, not all in Lucerne. Lucerne consolidates the eight card sorting sets and adapts the recording tool, both of which come from SORT. Oslo builds the quiz activities and the quiz assistant, including their technical side. Hamburg builds the platform and prepares the open publication. Together that is about nine person-months. With this, the work comes to about 37 % in Lucerne, 34 % in Hamburg and 29 % in Oslo – see the budget overview. Does that work for you?'],
   9:['How much data do the revisions need?','Process data is free; audio and coding are not. Four groups on two activities per university and wave come to some 54 hours of audio — enough for two people. More needs more staff.'],
   10:['Is there a course for the transfer topics in Hamburg or Oslo?','If either topic has a place in your teaching, the third wave can collect on the transfer at more than one site.'],
   11:['Do we look for a fourth partner?','With three partners, losing one means we cannot submit. A fourth would have to bring something we genuinely lack — and would not help if we lose Switzerland. Do you see one?'],
@@ -428,14 +428,14 @@ var ACT={
   M1:{t:'Kick-off, consortium agreement, ethics and data protection',lead:'L',y:['at the start of the project','','']},
   M2:{t:'Consortium meetings',lead:'L',all:'two a year, at the three universities in turn'},
   M3:{t:'Monitoring and budget control',lead:'L',all:'throughout the project'},
-  S1:{t:'Card sorting sets',lead:'L',y:['consolidate the eight sets · localise','revise after wave 1','final version · sets on one further topic']},
+  S1:{t:'Card sorting sets',lead:'L',y:['consolidate the eight sets · localise','revise after wave 1','final version · sets on two further topics']},
   S2:{t:'Kasper, the card sorting assistant',lead:'L',y:['extend Kasper to university level','staff at three universities design with it','guidelines · open documentation']},
   TS:{t:'Trials of the card sorting sets',lead:'L',wave:true,y:['wave 1 · the sets as they are (baseline)','wave 2 · revised sets','wave 3 · further topic']},
-  DS:{t:'Card sorting workshops in the partners’ networks',lead:'L',all:'from year 2, online and on site'},
-  Q1:{t:'Stochastic quiz activities',lead:'O',y:['build three to four activities · localise','revise after wave 1','revise after wave 2 · final version']},
+  DS:{t:'Workshops in the partners’ networks (card sorting part)',lead:'L',all:'three workshops from year 2, one per university, both formats together'},
+  Q1:{t:'Stochastic quiz activities',lead:'O',y:['conceive and build two to three activities · localise','revise after wave 2','final version after wave 3']},
   Q2:{t:'Quiz assistant',lead:'O',y:['build it alongside the activities','staff at three universities design with it','open documentation']},
-  TQ:{t:'Trials of the stochastic quiz',lead:'O',wave:true,y:['wave 1 · first activities','wave 2 · revised activities','wave 3 · final version']},
-  DQ:{t:'Stochastic quiz workshops in the partners’ networks',lead:'O',all:'from year 2, online and on site'},
+  TQ:{t:'Trials of the stochastic quiz',lead:'O',wave:true,y:['','wave 2 · first use','wave 3 · revised activities']},
+  DQ:{t:'Workshops in the partners’ networks (quiz part)',lead:'O',all:'the same three workshops, both formats together'},
   E1:{t:'Shared design criteria',lead:'H',y:['first version','revised after wave 1','final version']},
   E2:{t:'Instruments: recording tool, reflection format, observation scheme',lead:'H',y:['adapt for university teaching · pilot','','']},
   E4:{t:'Evaluation of each wave',lead:'H',y:['synthesis in the summer','synthesis in the summer','synthesis in the summer']},
@@ -447,17 +447,17 @@ var ACT={
 };
 var MGMT={k:'mgmt',lead:'L',pm:5.5,pmp:{L:3.1,H:1.2,O:1.2},acts:['M1','M2','M3'],dec:[]};
 var CUTS={
-  A:{label:'Cut A · five work packages',idea:'The version we plan with: every strand is its own work package. Each format runs its own trials and workshops; evaluation analyses all of them. WP5 is deliberately small – the platform, which carries both formats, the open publication, the use by outside lecturers and the closing conference. Who leads WP5 is settled at the end.',
+  A:{label:'Cut A · five work packages',idea:'The version we plan with: every strand is its own work package. Each format runs its own trials; the workshops present both formats together; evaluation analyses all of them. WP5 is deliberately small – the platform, which carries both formats, the open publication, the use by outside lecturers and the closing conference. Who leads WP5 is settled at the end.',
      desc:'',
-     wps:[{k:'sort',lead:'L',pm:18.05,pmp:{L:13.52,H:2.52,O:2.02},acts:['S1','S2','TS','DS'],dec:[2,14]},
-          {k:'quiz',lead:'O',pm:16.3,pmp:{L:1.77,H:2.77,O:11.77},acts:['Q1','Q2','TQ','DQ'],dec:[3,5]},
-          {k:'eval',lead:'H',pm:15.0,pmp:{L:4.25,H:8.25,O:2.5},acts:['E1','E2','E4','E5'],dec:[9,10]},
-          {k:'diss',lead:'?',pm:4.7,pmp:{L:1.23,H:2.98,O:0.48},leadText:'Hamburg or Oslo (decision 17)',acts:['P1','D2','DT','DC'],dec:[17,18,13,15]}]},
+     wps:[{k:'sort',lead:'L',pm:19.03,pmp:{L:12.26,H:4.13,O:2.64},acts:['S1','S2','TS','DS'],dec:[2,14]},
+          {k:'quiz',lead:'O',pm:13.07,pmp:{L:1.56,H:2.06,O:9.44},acts:['Q1','Q2','TQ','DQ'],dec:[3,5]},
+          {k:'eval',lead:'H',pm:15.0,pmp:{L:4.25,H:8.0,O:2.75},acts:['E1','E2','E4','E5'],dec:[9,10]},
+          {k:'diss',lead:'?',pm:4.7,pmp:{L:0.23,H:3.98,O:0.48},leadText:'Hamburg or Oslo (decision 17)',acts:['P1','D2','DT','DC'],dec:[17,18,13,15]}]},
   C:{label:'Cut C · four work packages, evaluation and transfer together',idea:'The fallback: WP4 and WP5 joined. Everything else stays as in cut A; evaluation and transfer also holds the platform, the open publication, the use by outside lecturers and the closing conference.',
      desc:'',
-     wps:[{k:'sort',lead:'L',pm:18.05,pmp:{L:13.52,H:2.52,O:2.02},acts:['S1','S2','TS','DS'],dec:[2,14]},
-          {k:'quiz',lead:'O',pm:16.3,pmp:{L:1.77,H:2.77,O:11.77},acts:['Q1','Q2','TQ','DQ'],dec:[3,5]},
-          {k:'evdi',lead:'H',pm:19.7,pmp:{L:5.48,H:11.23,O:2.98},acts:['E1','E2','E4','E5','P1','D2','DT','DC'],dec:[9,10,18,13,15]}]}
+     wps:[{k:'sort',lead:'L',pm:19.03,pmp:{L:12.26,H:4.13,O:2.64},acts:['S1','S2','TS','DS'],dec:[2,14]},
+          {k:'quiz',lead:'O',pm:13.07,pmp:{L:1.56,H:2.06,O:9.44},acts:['Q1','Q2','TQ','DQ'],dec:[3,5]},
+          {k:'evdi',lead:'H',pm:19.7,pmp:{L:4.48,H:11.98,O:3.23},acts:['E1','E2','E4','E5','P1','D2','DT','DC'],dec:[9,10,18,13,15]}]}
 };
 var WPQ=[['obj','Specific objectives','How they contribute to the general objectives of the project.'],
   ['res','Main results',''],
@@ -621,7 +621,7 @@ function renderBudget(){
     h+='<tr><td class="wpc" style="--wpc:'+K.col+'">'+wpIcon(wp.k)+'WP'+n+' · '+esc(wpName(wp))+'</td><td>'+esc(wp.lead==='?'?'open':ORG[wp.lead])+'</td>';
     h+='<td class="num">'+pmFmt(wp.pm)+'</td>'+['L','H','O'].map(function(o){ var v=wp.pmp&&wp.pmp[o]; if(v!=null) psum[o]+=v; return '<td class="num">'+(v!=null?pmFmt(v)+' PM':'·')+'</td>'; }).join('')+'<td class="num open">'+(wp.k==='mgmt'?'55 000 provisional':'·')+'</td></tr>'; });
   h+='<tr><th>Total</th><th></th><th class="num">'+pmFmt(pmSum)+'</th>'+['L','H','O'].map(function(o){ return '<th class="num">'+pmFmt(psum[o])+' PM · '+Math.round(100*psum[o]/pmSum)+' %</th>'; }).join('')+'<th class="num">400 000</th></tr></table></div>';
-  h+='<p class="tln">Person-months are a first estimate from the activities (one person-month is about 160 hours). The columns per university show who does the work; amounts in euros follow once the three full-cost rates are known. The person-months add up to '+pmFmt(pmSum)+'; at the rates assumed so far the lump sum carries about 53, so they will still come down. The form and the final report present the budget by work package and by organisation, as here. Project management may take at most 20 % of the grant, that is EUR 80 000.</p>';
+  h+='<p class="tln">Person-months are a first estimate from the activities (one person-month is about 160 hours). The columns per university show who does the work; amounts in euros follow once the three full-cost rates are known. The person-months add up to '+pmFmt(pmSum)+'; about 11 of them are the time of the three of us, largely co-financed by our universities. At the rates assumed so far the lump sum carries about 53; the difference is settled once the rates are known, by cutting or by co-financing. The form and the final report present the budget by work package and by organisation, as here. Project management may take at most 20 % of the grant, that is EUR 80 000.</p>';
   b.innerHTML=h;
 }
 function renderVbar(){
