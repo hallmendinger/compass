@@ -118,7 +118,7 @@ details.annex>summary::-webkit-details-marker{display:none}
 .mx .gen{background:var(--band)}
 .bud td.num{text-align:right;white-space:nowrap}
 .bud .open{color:var(--grey)}
-.bud .prov{display:block;font-size:.68rem;color:var(--grey);font-weight:400}
+.bud .openc{color:var(--grey)}
 
 /* Abschnitt je Arbeitspaket und Unterabschnitte */
 details.grpbox{margin:0 0 .9rem 1rem;border-left:6px solid var(--wpc,var(--rule));padding-left:.7rem;scroll-margin-top:5.5rem}
@@ -312,7 +312,7 @@ var DEC={
   5:['Who leads the stochastic quiz?','Henrike’s proposal: Helmer leads the stochastic quiz, with his experience in game-based learning as its own work package, WP3. Does that work for you, Helmer and Nils?'],
   6:['How many hours can each of us contribute?','About 13 PM from the three of us together. The split need not be even.'],
   7:['How do we staff the research posts — and could they be doctoral posts?','About 21 PM in all, a little over half a post; the split should follow the work. A doctoral post would have to be applied for here, and the hours would grow. Nils, could Hamburg bring one in?'],
-  8:['Where does the technical work sit?','Henrike’s proposal: not all in Lucerne, and bundled where it can be. Oslo carries the technical work of both formats: it consolidates the eight card sorting sets, whose code comes from SORT, and builds the quiz activities and the quiz assistant. Lucerne adapts the recording tool from SORT. Hamburg builds the platform and prepares the open publication. Together that is about nine person-months. With this, the work comes to about a third at each university – see the budget overview. Does that work for you?'],
+  8:['Where does the technical work sit?','Henrike’s proposal: not all in Lucerne, and bundled where it can be. Oslo carries the technical work of both formats: it consolidates the eight card sorting sets, whose code comes from SORT, and builds the quiz activities and the quiz assistant. Lucerne adapts the recording tool from SORT. Hamburg builds the platform and prepares the open publication. Together that is about nine person-months. Where the open lines land decides whether the work comes to about a third at each university – see the open lines in the budget overview. Does that work for you?'],
   9:['How much data do the revisions need?','Process data is free; audio and coding are not. Four groups on two activities per university and wave come to some 54 hours of audio — enough for two people. More needs more staff.'],
   10:['Is there a course for the transfer topics in Hamburg or Oslo?','If either topic has a place in your teaching, the third wave can collect on the transfer at more than one site.'],
   11:['Do we look for a fourth partner?','With three partners, losing one means we cannot submit. A fourth would have to bring something we genuinely lack — and would not help if we lose Switzerland. Do you see one?'],
@@ -446,19 +446,19 @@ var ACT={
   DT:{t:'Lecturers outside the partnership use the activities',lead:null,y:['','','use and feedback (decision 13)']},
   DC:{t:'Closing conference',lead:null,y:['','','final six months']}
 };
-var MGMT={k:'mgmt',lead:'L',pm:5.5,pmp:{L:3.1,H:1.2,O:1.2},acts:['M1','M2','M3'],dec:[]};
+var MGMT={k:'mgmt',lead:'L',pm:5.5,pmp:{L:3.1,H:1.2,O:1.2},open:0,acts:['M1','M2','M3'],dec:[]};
 var CUTS={
   A:{label:'Cut A · five work packages',idea:'The version we plan with: every strand is its own work package. Each format runs its own trials; the workshops present both formats together; evaluation analyses all of them. WP5 is deliberately small – the platform, which carries both formats, the open publication, the use by outside lecturers and the closing conference. Who leads WP5 is settled at the end.',
      desc:'',
-     wps:[{k:'sort',lead:'L',pm:19.03,pmp:{L:10.26,H:3.14,O:5.63},prov:{L:1.0,H:0.5,O:3.0},acts:['S1','S2','TS','DS'],dec:[2,14]},
-          {k:'quiz',lead:'O',pm:13.07,pmp:{L:1.56,H:2.06,O:9.44},prov:{H:0.5},acts:['Q1','Q2','TQ','DQ'],dec:[3,5]},
-          {k:'eval',lead:'H',pm:15.0,pmp:{L:4.25,H:8.0,O:2.75},acts:['E1','E2','E4','E5'],dec:[9,10]},
-          {k:'diss',lead:'?',pm:4.7,pmp:{L:0.23,H:4.23,O:0.23},prov:{L:0.23,H:0.23,O:0.23},leadText:'Hamburg or Oslo (decision 17)',acts:['P1','D2','DT','DC'],dec:[17,18,13,15]}]},
+     wps:[{k:'sort',lead:'L',pm:19.03,pmp:{L:10.26,H:2.64,O:2.64},open:3.5,acts:['S1','S2','TS','DS'],dec:[2,14]},
+          {k:'quiz',lead:'O',pm:13.07,pmp:{L:1.56,H:1.56,O:9.44},open:0.5,acts:['Q1','Q2','TQ','DQ'],dec:[3,5]},
+          {k:'eval',lead:'H',pm:15.0,pmp:{L:4.25,H:8.0,O:2.75},open:0,acts:['E1','E2','E4','E5'],dec:[9,10]},
+          {k:'diss',lead:'?',pm:4.7,pmp:{L:0,H:0,O:0},open:4.7,leadText:'Hamburg or Oslo (decision 17)',acts:['P1','D2','DT','DC'],dec:[17,18,13,15]}]},
   C:{label:'Cut C · four work packages, evaluation and transfer together',idea:'The fallback: WP4 and WP5 joined. Everything else stays as in cut A; evaluation and transfer also holds the platform, the open publication, the use by outside lecturers and the closing conference.',
      desc:'',
-     wps:[{k:'sort',lead:'L',pm:19.03,pmp:{L:10.26,H:3.14,O:5.63},prov:{L:1.0,H:0.5,O:3.0},acts:['S1','S2','TS','DS'],dec:[2,14]},
-          {k:'quiz',lead:'O',pm:13.07,pmp:{L:1.56,H:2.06,O:9.44},prov:{H:0.5},acts:['Q1','Q2','TQ','DQ'],dec:[3,5]},
-          {k:'evdi',lead:'H',pm:19.7,pmp:{L:4.48,H:12.23,O:2.98},prov:{L:0.23,H:0.23,O:0.23},acts:['E1','E2','E4','E5','P1','D2','DT','DC'],dec:[9,10,18,13,15]}]}
+     wps:[{k:'sort',lead:'L',pm:19.03,pmp:{L:10.26,H:2.64,O:2.64},open:3.5,acts:['S1','S2','TS','DS'],dec:[2,14]},
+          {k:'quiz',lead:'O',pm:13.07,pmp:{L:1.56,H:1.56,O:9.44},open:0.5,acts:['Q1','Q2','TQ','DQ'],dec:[3,5]},
+          {k:'evdi',lead:'H',pm:19.7,pmp:{L:4.25,H:8.0,O:2.75},open:4.7,acts:['E1','E2','E4','E5','P1','D2','DT','DC'],dec:[9,10,18,13,15]}]}
 };
 var WPQ=[['obj','Specific objectives','How they contribute to the general objectives of the project.'],
   ['res','Main results',''],
@@ -614,16 +614,23 @@ function renderMatrix(){
   });
   m.innerHTML=h+'</table></div>';
 }
-function provTxt(wp,o){ var p=wp.prov&&wp.prov[o]; return p?'<span class="prov">◇ '+pmFmt(p)+'</span>':''; }
+var OPENROWS=[
+  ['Technical consolidation of the eight card sorting sets',3.0,'Oslo, bundling the technical work of both formats, or Lucerne, where the code comes from (decision 8)?'],
+  ['Platform',1.5,'Proposal: Hamburg (decision 18).'],
+  ['Open publication: preparation, archive, Results Platform',1.5,'Follows the platform.'],
+  ['Lecturers outside the partnership use the activities',1.0,'Whoever brings in the lecturers (decision 13).'],
+  ['Guidelines for lecturers on AI-supported design',1.0,'Hamburg, as drafted on 17 October, or someone else?'],
+  ['Closing conference',0.7,'Who hosts it?']];
 function pmFmt(x){ return x==null?'·':(Math.round(x*10)/10).toFixed(1); }
 function renderBudget(){
-  var b=document.getElementById('budget'); var h='<div class="bud"><table><tr><th>Work package</th><th>Lead</th><th>Person-months</th><th>Lucerne</th><th>Hamburg</th><th>Oslo</th><th>Total (EUR)</th></tr>';
-  var pmSum=0, psum={L:0,H:0,O:0}, prsum={L:0,H:0,O:0};
-  wpList().forEach(function(wp,i){ var n=i+1, K=WPKIND[wp.k]; pmSum+=wp.pm||0;
+  var b=document.getElementById('budget'); var h='<div class="bud"><table><tr><th>Work package</th><th>Lead</th><th>Person-months</th><th>Lucerne</th><th>Hamburg</th><th>Oslo</th><th>Open</th><th>Total (EUR)</th></tr>';
+  var pmSum=0, psum={L:0,H:0,O:0}, opSum=0;
+  wpList().forEach(function(wp,i){ var n=i+1, K=WPKIND[wp.k]; pmSum+=wp.pm||0; opSum+=wp.open||0;
     h+='<tr><td class="wpc" style="--wpc:'+K.col+'">'+wpIcon(wp.k)+'WP'+n+' · '+esc(wpName(wp))+'</td><td>'+esc(wp.lead==='?'?'open':ORG[wp.lead])+'</td>';
-    h+='<td class="num">'+pmFmt(wp.pm)+'</td>'+['L','H','O'].map(function(o){ var v=wp.pmp&&wp.pmp[o]; if(v!=null) psum[o]+=v; if(wp.prov&&wp.prov[o]) prsum[o]+=wp.prov[o]; return '<td class="num">'+(v!=null?pmFmt(v)+' PM':'·')+provTxt(wp,o)+'</td>'; }).join('')+'<td class="num open">'+(wp.k==='mgmt'?'55 000 provisional':'·')+'</td></tr>'; });
-  h+='<tr><th>Total</th><th></th><th class="num">'+pmFmt(pmSum)+'</th>'+['L','H','O'].map(function(o){ return '<th class="num">'+pmFmt(psum[o])+' PM · '+Math.round(100*psum[o]/pmSum)+' %<span class="prov">of which ◇ '+pmFmt(prsum[o])+' provisional</span></th>'; }).join('')+'<th class="num">400 000</th></tr></table></div>';
-  h+='<p class="tln"><b>◇ Placed provisionally</b> – about 10 % of the work, put where it evens out the shares and still to be agreed: technical consolidation of the eight card sorting sets (3.0, Oslo), introduction and documentation of Kasper (1.0, Lucerne), guidelines for lecturers (1.0, Hamburg), closing conference (0.7, shared). The rest is tied to where the work happens or to who has the expertise.</p>';
+    h+='<td class="num">'+pmFmt(wp.pm)+'</td>'+['L','H','O'].map(function(o){ var v=wp.pmp&&wp.pmp[o]; if(v!=null) psum[o]+=v; return '<td class="num">'+(v?pmFmt(v)+' PM':'—')+'</td>'; }).join('')+'<td class="num openc">'+(wp.open?'○ '+pmFmt(wp.open)+' PM':'—')+'</td><td class="num open">'+(wp.k==='mgmt'?'55 000 provisional':'·')+'</td></tr>'; });
+  h+='<tr><th>Total</th><th></th><th class="num">'+pmFmt(pmSum)+'</th>'+['L','H','O'].map(function(o){ return '<th class="num">'+pmFmt(psum[o])+' PM · '+Math.round(100*psum[o]/pmSum)+' %</th>'; }).join('')+'<th class="num">○ '+pmFmt(opSum)+' PM · '+Math.round(100*opSum/pmSum)+' %</th><th class="num">400 000</th></tr></table></div>';
+  h+='<p class="tln"><b>Assigned</b> is the work that clearly belongs somewhere: what has to happen at every university (trials, localisation, coding, ethics) is shared equally, and the rest sits with whoever has the expertise or the material. <b>○ Open</b> is the work we still have to place together:</p>';
+  h+='<div class="bud"><table><tr><th>Open line</th><th>Person-months</th><th>The question</th></tr>'+OPENROWS.map(function(r){ return '<tr><td>○ '+esc(r[0])+'</td><td class="num">'+pmFmt(r[1])+'</td><td>'+esc(r[2])+'</td></tr>'; }).join('')+'</table></div>';
   h+='<p class="tln">Person-months are a first estimate from the activities (one person-month is about 160 hours). The columns per university show who does the work; amounts in euros follow once the three full-cost rates are known. The person-months add up to '+pmFmt(pmSum)+'; about 11 of them are the time of the three of us, largely co-financed by our universities. At the rates assumed so far the lump sum carries about 53; the difference is settled once the rates are known, by cutting or by co-financing. The form and the final report present the budget by work package and by organisation, as here. Project management may take at most 20 % of the grant, that is EUR 80 000.</p>';
   b.innerHTML=h;
 }
