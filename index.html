@@ -318,7 +318,7 @@ var DEC={
   13:['Can we name lecturers outside our three universities?','B2 and B3 are written cautiously: in the final year, a lecturer who was not involved in the design uses the activities. The strong version would read — B2: “… and lecturers at other institutions take it up in the final year.” B3: “… and in the final year lecturers at other institutions use them in their own teaching, so that what works in one place can be shown to work elsewhere.” For that we need two or three colleagues, for instance through INDRUM or ERME, who commit before we submit and join as associated partners. Who could we ask?'],
   14:['Are the trials in Hamburg and Oslo secured?','B7, B12 and B14 say that the activities are trialled in regular courses at all three universities. Earlier planning had Lucerne from September, Hamburg from October and Oslo from January. Can each of you confirm a course in which the activities can run in each of the three years?'],
   15:['Who hosts the platform after the project?','D2 promises that the platform stays online beyond 2030. That needs one of our universities to commit to hosting it. Lucerne is the first choice; the question to IT there is still open. AI support is not promised beyond the project.'],
-  16:['Five work packages or four?','We plan with cut A: five work packages, with a deliberately small WP5 for dissemination – the platform, which carries both formats, the workshops and the closing conference. Cut C is the fallback: WP4 and WP5 are joined into evaluation and transfer, and the workshops move to the format they present – card sorting workshops to WP2, quiz workshops to WP3. Nothing else changes, so we can decide at the end. In both, Lucerne leads management and card sorting, Oslo the stochastic quiz and Hamburg the evaluation, which also holds the shared design criteria. Does this work for you, Nils and Helmer? Where the closing conference takes place is open: Oslo is tempting, but we have already met in Oslo and Hamburg, so Lucerne would be next.'],
+  16:['Five work packages or four?','We plan with cut A: five work packages, with a deliberately small WP5 for dissemination – the platform, which carries both formats, the open publication, the use by outside lecturers and the closing conference. Cut C is the fallback: WP4 and WP5 are joined into evaluation and transfer. Nothing else changes, so we can decide at the end. In both, each format runs its own trials at the three universities and its own workshops; Lucerne leads management and card sorting, Oslo the stochastic quiz and Hamburg the evaluation, which also holds the shared design criteria and the instruments. Does this work for you, Nils and Helmer? Where the closing conference takes place is open: Oslo is tempting, but we have already met in Oslo and Hamburg, so Lucerne would be next.'],
   17:['Who leads WP5?','In cut A, Nils or Helmer; the platform within it is an activity that Lucerne carries. We settle this at the end. In cut C the question falls away: dissemination is part of evaluation and transfer.'],
   18:['Cut C: where does the platform sit?','In evaluation and transfer, as an activity of Lucerne, because it carries both formats. The alternative is card sorting, which Lucerne leads anyway.'],
   12:['Where else could we submit this?','If Switzerland is not associated, Erasmus+ is closed to us. Do you know another programme or foundation for a project like this?']
@@ -428,33 +428,36 @@ var ACT={
   M1:{t:'Kick-off, consortium agreement, ethics and data protection',lead:'L',y:['at the start of the project','','']},
   M2:{t:'Consortium meetings',lead:'L',all:'two a year, at the three universities in turn'},
   M3:{t:'Monitoring and budget control',lead:'L',all:'throughout the project'},
-  S1:{t:'Card sorting sets',lead:'L',y:['consolidate the eight sets','revise after wave 1','final version · sets on two further topics']},
+  S1:{t:'Card sorting sets',lead:'L',y:['consolidate the eight sets · localise','revise after wave 1','final version · sets on one further topic']},
   S2:{t:'Kasper, the card sorting assistant',lead:'L',y:['extend Kasper to university level','staff at three universities design with it','guidelines · open documentation']},
-  Q1:{t:'Stochastic quiz activities',lead:'O',y:['build two to three activities','first use · revise','second use · final version']},
+  TS:{t:'Trials of the card sorting sets',lead:'L',wave:true,y:['wave 1 · the sets as they are (baseline)','wave 2 · revised sets','wave 3 · further topic']},
+  DS:{t:'Card sorting workshops in the partners’ networks',lead:'L',all:'from year 2, online and on site'},
+  Q1:{t:'Stochastic quiz activities',lead:'O',y:['build three to four activities · localise','revise after wave 1','revise after wave 2 · final version']},
   Q2:{t:'Quiz assistant',lead:'O',y:['build it alongside the activities','staff at three universities design with it','open documentation']},
-  P1:{t:'Platform for the activities',lead:'L',y:['set up','revised activities online','open release in three languages']},
+  TQ:{t:'Trials of the stochastic quiz',lead:'O',wave:true,y:['wave 1 · first activities','wave 2 · revised activities','wave 3 · final version']},
+  DQ:{t:'Stochastic quiz workshops in the partners’ networks',lead:'O',all:'from year 2, online and on site'},
   E1:{t:'Shared design criteria',lead:'H',y:['first version','revised after wave 1','final version']},
   E2:{t:'Instruments: recording tool, reflection format, observation scheme',lead:'H',y:['adapt for university teaching · pilot','','']},
-  E3:{t:'Trial waves at three universities',lead:'H',wave:true,y:['localise · wave 1 · card sorting as it is (baseline)','localise · wave 2 · revised sets + quiz','localise · wave 3 · further topics + revised quiz']},
-  E4:{t:'Evaluation of each wave',lead:'H',y:['synthesis in the summer','synthesis in the summer','synthesis · validation report']},
-  D1:{t:'Workshops and contributions in the partners’ networks',lead:null,all:'in each year, online and on site'},
-  DS:{t:'Card sorting workshops in the partners’ networks',lead:'L',all:'in each year, online and on site'},
-  DQ:{t:'Stochastic quiz workshops in the partners’ networks',lead:'O',all:'in each year, online and on site'},
-  D2:{t:'Open publication and closing conference',lead:null,y:['','','open publication · outside lecturer · closing conference']}
+  E4:{t:'Evaluation of each wave',lead:'H',y:['synthesis in the summer','synthesis in the summer','synthesis in the summer']},
+  E5:{t:'Validation report',lead:'H',y:['','','on the final versions']},
+  P1:{t:'Platform for the activities',lead:'L',y:['set up','revised activities online','open release in three languages']},
+  D2:{t:'Open publication',lead:null,y:['','','archive with a DOI · Erasmus+ Project Results Platform']},
+  DT:{t:'Lecturers outside the partnership use the activities',lead:null,y:['','','use and feedback (decision 13)']},
+  DC:{t:'Closing conference',lead:null,y:['','','final six months']}
 };
-var MGMT={k:'mgmt',lead:'L',acts:['M1','M2','M3'],dec:[]};
+var MGMT={k:'mgmt',lead:'L',pm:5.5,acts:['M1','M2','M3'],dec:[]};
 var CUTS={
-  A:{label:'Cut A · five work packages',idea:'The version we plan with: every strand is its own work package, and WP5 is deliberately small – the platform, which carries both formats, the workshops and the closing conference. Who leads WP5 is settled at the end.',
-     desc:'Management · card sorting · stochastic quiz · evaluation · dissemination. Lucerne leads WP1 and WP2, Oslo WP3, Hamburg WP4. WP5 is led by Hamburg or Oslo; the platform is an activity of Lucerne within it.',
-     wps:[{k:'sort',lead:'L',acts:['S1','S2'],dec:[2]},
-          {k:'quiz',lead:'O',acts:['Q1','Q2'],dec:[3,5]},
-          {k:'eval',lead:'H',acts:['E1','E2','E3','E4'],dec:[9,10,14]},
-          {k:'diss',lead:'?',leadText:'Hamburg or Oslo (decision 17)',acts:['P1','D1','D2'],dec:[17,13,15]}]},
-  C:{label:'Cut C · four work packages, evaluation and transfer together',idea:'The fallback: WP4 and WP5 joined. The workshops move to the format they present; evaluation and transfer keeps the platform (Lucerne’s activity), the open publication and the closing conference.',
-     desc:'Management · card sorting · stochastic quiz · evaluation and transfer. Lucerne leads WP1 and WP2, Oslo WP3, Hamburg WP4. Card sorting and quiz workshops sit with their formats; WP4 holds the platform as an activity of Lucerne, the open publication and the closing conference.',
-     wps:[{k:'sort',lead:'L',acts:['S1','S2','DS'],dec:[2]},
-          {k:'quiz',lead:'O',acts:['Q1','Q2','DQ'],dec:[3,5]},
-          {k:'evdi',lead:'H',acts:['E1','E2','E3','E4','P1','D2'],dec:[9,10,14,18,13,15]}]}
+  A:{label:'Cut A · five work packages',idea:'The version we plan with: every strand is its own work package. Each format runs its own trials and workshops; evaluation analyses all of them. WP5 is deliberately small – the platform, which carries both formats, the open publication, the use by outside lecturers and the closing conference. Who leads WP5 is settled at the end.',
+     desc:'',
+     wps:[{k:'sort',lead:'L',pm:18.05,acts:['S1','S2','TS','DS'],dec:[2,14]},
+          {k:'quiz',lead:'O',pm:16.3,acts:['Q1','Q2','TQ','DQ'],dec:[3,5]},
+          {k:'eval',lead:'H',pm:15.0,acts:['E1','E2','E4','E5'],dec:[9,10]},
+          {k:'diss',lead:'?',pm:4.7,leadText:'Hamburg or Oslo (decision 17)',acts:['P1','D2','DT','DC'],dec:[17,13,15]}]},
+  C:{label:'Cut C · four work packages, evaluation and transfer together',idea:'The fallback: WP4 and WP5 joined. Everything else stays as in cut A; evaluation and transfer also holds the platform (Lucerne’s activity), the open publication, the use by outside lecturers and the closing conference.',
+     desc:'',
+     wps:[{k:'sort',lead:'L',pm:18.05,acts:['S1','S2','TS','DS'],dec:[2,14]},
+          {k:'quiz',lead:'O',pm:16.3,acts:['Q1','Q2','TQ','DQ'],dec:[3,5]},
+          {k:'evdi',lead:'H',pm:19.7,acts:['E1','E2','E4','E5','P1','D2','DT','DC'],dec:[9,10,18,13,15]}]}
 };
 var WPQ=[['obj','Specific objectives','How they contribute to the general objectives of the project.'],
   ['res','Main results',''],
@@ -610,13 +613,15 @@ function renderMatrix(){
   });
   m.innerHTML=h+'</table></div>';
 }
+function pmFmt(x){ return x==null?'·':(Math.round(x*10)/10).toFixed(1); }
 function renderBudget(){
-  var b=document.getElementById('budget'); var h='<div class="bud"><table><tr><th>Work package</th><th>Lead</th><th>Lucerne</th><th>Hamburg</th><th>Oslo</th><th>Total (EUR)</th></tr>';
-  wpList().forEach(function(wp,i){ var n=i+1, K=WPKIND[wp.k];
+  var b=document.getElementById('budget'); var h='<div class="bud"><table><tr><th>Work package</th><th>Lead</th><th>Person-months</th><th>Lucerne</th><th>Hamburg</th><th>Oslo</th><th>Total (EUR)</th></tr>';
+  var pmSum=0;
+  wpList().forEach(function(wp,i){ var n=i+1, K=WPKIND[wp.k]; pmSum+=wp.pm||0;
     h+='<tr><td class="wpc" style="--wpc:'+K.col+'">'+wpIcon(wp.k)+'WP'+n+' · '+esc(wpName(wp))+'</td><td>'+esc(wp.lead==='?'?'open':ORG[wp.lead])+'</td>';
-    h+='<td class="num open">·</td><td class="num open">·</td><td class="num open">·</td><td class="num open">'+(wp.k==='mgmt'?'55 000 provisional':'·')+'</td></tr>'; });
-  h+='<tr><th>Total</th><th></th><th></th><th></th><th></th><th class="num">400 000</th></tr></table></div>';
-  h+='<p class="tln">The form and the final report present the budget by work package and by organisation, as here. Amounts follow once the three full-cost rates are known. Project management may take at most 20 % of the grant, that is EUR 80 000.</p>';
+    h+='<td class="num">'+pmFmt(wp.pm)+'</td><td class="num open">·</td><td class="num open">·</td><td class="num open">·</td><td class="num open">'+(wp.k==='mgmt'?'55 000 provisional':'·')+'</td></tr>'; });
+  h+='<tr><th>Total</th><th></th><th class="num">'+pmFmt(pmSum)+'</th><th></th><th></th><th></th><th class="num">400 000</th></tr></table></div>';
+  h+='<p class="tln">Person-months are a first estimate from the activities (one person-month is about 160 hours). They add up to '+pmFmt(pmSum)+'; at the rates assumed so far the lump sum carries about 53, so they will still come down. The form and the final report present the budget by work package and by organisation, as here; the amounts follow once the three full-cost rates are known. Project management may take at most 20 % of the grant, that is EUR 80 000.</p>';
   b.innerHTML=h;
 }
 function renderVbar(){
@@ -625,7 +630,7 @@ function renderVbar(){
   if(fixed){
     v.appendChild(el('span','vfix',CUTS[fixed.v].label+' is fixed'));
     v.appendChild(el('span','',' — by '+(fixed.name||'someone')+', '+when(fixed.at)+'. The other cut is hidden; its texts stay in the database.'));
-    v.appendChild(el('span','vd',CUTS[fixed.v].desc));
+    v.appendChild(el('span','vd',CUTS[fixed.v].idea));
     if(inn){ var r=el('button','','reopen the choice'); r.onclick=async function(){
       if(!confirm('Reopen the choice between the two cuts for all three of us?')) return;
       r.disabled=true; await sb.from('notes').insert({anchor:'wp-variant',body:'open'}); loadNotes(); }; v.appendChild(r); }
