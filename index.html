@@ -457,8 +457,12 @@ function renderBar(msg){
       var v=i.value.trim(); if(!v) return; b.disabled=true;
       var r=await sb.auth.signInWithOtp({email:v,options:{shouldCreateUser:false,emailRedirectTo:location.origin+location.pathname}});
       b.disabled=false;
-      renderBar(r.error ? 'That did not work. Is this the address you were invited with? ('+r.error.message+')'
-                        : 'Check your inbox — the link signs you in on this page.');
+      var msg='Check your inbox — the link signs you in on this page. If you do not see it, look in your spam folder.';
+      if(r.error){ var c=(r.error.code||'')+' '+(r.error.message||'');
+        if(/rate|seconds|429/i.test(c)) msg='A link has just been sent, or too many were sent in the last hour. Please use the link you already have, or try again in a while.';
+        else if(/signup|not allowed|422/i.test(c)) msg='This address is not on the list for this page. Please use the address your invitation went to, or ask Henrike.';
+        else msg='That did not work ('+r.error.message+'). Please try again in a moment.'; }
+      renderBar(msg);
     };
     i.addEventListener('keydown',function(e){ if(e.key==='Enter') b.click(); });
     bar.appendChild(i); bar.appendChild(b);
