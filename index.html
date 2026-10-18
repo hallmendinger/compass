@@ -90,6 +90,20 @@ h1{font-size:2.1rem;line-height:1.1;margin:0;color:var(--accent);letter-spacing:
 .vbar button[aria-pressed="false"]::before{content:"○ "}
 .vbar .vfix{font-weight:700;color:var(--ink)}
 .vbar .vd{flex-basis:100%;color:var(--ink);margin:.1rem 0 0}
+.cmp{flex-basis:100%;overflow-x:auto}
+.cmp table{border-collapse:collapse;width:100%;min-width:36rem;background:#fff}
+.cmp th,.cmp td{border:1px solid var(--ask-rule);padding:.35rem .5rem;vertical-align:top;text-align:left;width:31%}
+.cmp th.rh,.cmp tr>th:first-child{width:7%;color:var(--grey);font-size:.72rem;background:var(--ask-light)}
+.cmp tr:first-child th{font-size:.85rem;color:var(--ask-dark)}
+.cmp .on{border-left:3px solid var(--ask-dark);border-right:3px solid var(--ask-dark)}
+.cmp tr:first-child th.on{border-top:3px solid var(--ask-dark)}
+.cmp tr:last-child td.on{border-bottom:3px solid var(--ask-dark)}
+.cmp .idea{font-size:.78rem}
+.cmp td.wpcell{box-shadow:inset 5px 0 0 var(--wpc)}
+.cmp td.wpcell b{font-weight:700}
+.cmp td .lead{display:block;font-size:.72rem;color:var(--grey);margin-left:1.6em}
+.cmp td button{margin:0 .3rem .2rem 0}
+.cmp .none{color:var(--grey)}
 
 details.annex{font-family:var(--sans);font-size:.8rem;border-top:1px solid var(--rule);margin:.8rem 0 0}
 details.annex>summary{list-style:none;cursor:pointer;font-weight:700;color:var(--accent);padding:.45rem 0;font-size:.85rem}
@@ -237,9 +251,9 @@ table.adm td:first-child{font-family:var(--sans);font-size:.78rem;color:var(--gr
 <symbol id="w-mgmt" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 3.5h6v3H9zM8.5 11.5h7M8.5 15.5h4.5"/></symbol>
 <symbol id="w-sort" viewBox="0 0 24 24"><rect x="3" y="8" width="10" height="13" rx="1.5"/><rect x="11" y="3" width="10" height="13" rx="1.5"/></symbol>
 <symbol id="w-quiz" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><circle class="dot" cx="8.6" cy="8.6" r="1.5"/><circle class="dot" cx="12" cy="12" r="1.5"/><circle class="dot" cx="15.4" cy="15.4" r="1.5"/></symbol>
-<symbol id="w-dev" viewBox="0 0 24 24"><path d="M4 20l1-4.5L16.5 4 20 7.5 8.5 19z"/><path d="M14 6.5l3.5 3.5"/></symbol>
 <symbol id="w-eval" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6"/><path d="M15 15l5.5 5.5"/></symbol>
 <symbol id="w-diss" viewBox="0 0 24 24"><circle class="dot" cx="12" cy="12" r="2"/><path d="M8.2 7.8a6 6 0 0 0 0 8.4M15.8 7.8a6 6 0 0 1 0 8.4M5.2 4.8a10.2 10.2 0 0 0 0 14.4M18.8 4.8a10.2 10.2 0 0 1 0 14.4"/></symbol>
+<symbol id="w-evdi" viewBox="0 0 24 24"><circle cx="9.5" cy="9.5" r="5.5"/><path d="M13.5 13.5l3.5 3.5"/><path d="M17.5 4.5a8 8 0 0 1 2 5.5M20.5 2a12 12 0 0 1 2.5 8"/></symbol>
 <symbol id="i-prop" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><text x="12" y="17.3" text-anchor="middle" font-size="14.5" font-weight="800" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" fill="currentColor" stroke="none">P</text></symbol>
 </svg>
 <main>
@@ -272,7 +286,7 @@ table.adm td:first-child{font-family:var(--sans);font-size:.78rem;color:var(--gr
 <div class="legend">
 <p><b>Each field of the form opens on its own.</b> On the left, what is for us: notes, open decisions, what a field is waiting for. On the right, the application text as a reviewer will read it.</p>
 <p><svg class="ico" style="stroke:var(--ask)"><use href="#i-decide"/></svg><b>A circled question mark</b> is an open decision; open it to answer. <svg class="ico" style="stroke:var(--ask)"><use href="#i-prop"/></svg><b>A circled P</b> marks a proposal. The text on the right is edited by one person at a time — whoever presses “edit” holds the field until they save or cancel, and every earlier version is kept.</p>
-<p><b>Each work package has its own symbol</b> — a clipboard for project management, two cards for card sorting, a die for the stochastic quiz, a pencil for development, a magnifying glass for evaluation, waves for dissemination. The symbol stands wherever the work package appears: in the Gantt chart, the matrix, the budget and the form.</p>
+<p><b>Each work package has its own symbol</b> — a clipboard for project management, two cards for card sorting, a die for the stochastic quiz, a magnifying glass for evaluation, waves for dissemination, and a magnifying glass with waves for evaluation and transfer. The symbol stands wherever the work package appears: in the Gantt chart, the matrix, the budget and the form.</p>
 <p>The form shows the character limit of each field only once it is open online; until then, each field counts its characters.</p>
 </div>
 
@@ -294,7 +308,7 @@ var DEC={
   2:['Do we open the assistants for reuse?','Keep them as our own tools, use them within the project at all three universities, or publish them for anyone. We lean to the middle: the team first.'],
   3:['Does the AI run during the Borel activity, or only while we build it?','If it only helps us build it, Borel ships as a self-contained file like the card sets, and anyone can use it. If it runs live, every user needs their own AI access, and the assistant has to be published with it.'],
   4:['What do we each count as our own contribution?','Nothing is declared or evidenced. What can each institution realistically put in beside the grant?'],
-  5:['Who leads the stochastic quiz?','Henrike’s proposal: Helmer leads the stochastic quiz, with his experience in game-based learning – as its own work package in cut A, as the quiz activities within development in cut B. Does that work for you, Helmer and Nils?'],
+  5:['Who leads the stochastic quiz?','Henrike’s proposal: Helmer leads the stochastic quiz, with his experience in game-based learning as its own work package, WP3. Does that work for you, Helmer and Nils?'],
   6:['How many hours can each of us contribute?','About 13 PM from the three of us together. The split need not be even.'],
   7:['How do we staff the research posts — and could they be doctoral posts?','About 21 PM in all, a little over half a post; the split should follow the work. A doctoral post would have to be applied for here, and the hours would grow. Nils, could Hamburg bring one in?'],
   8:['Where does the technical work sit?','About 9 PM, a quarter of a post, separate from the research posts. At which university?'],
@@ -304,9 +318,9 @@ var DEC={
   13:['Can we name lecturers outside our three universities?','B2 and B3 are written cautiously: in the final year, a lecturer who was not involved in the design uses the activities. The strong version would read — B2: “… and lecturers at other institutions take it up in the final year.” B3: “… and in the final year lecturers at other institutions use them in their own teaching, so that what works in one place can be shown to work elsewhere.” For that we need two or three colleagues, for instance through INDRUM or ERME, who commit before we submit and join as associated partners. Who could we ask?'],
   14:['Are the trials in Hamburg and Oslo secured?','B7, B12 and B14 say that the activities are trialled in regular courses at all three universities. Earlier planning had Lucerne from September, Hamburg from October and Oslo from January. Can each of you confirm a course in which the activities can run in each of the three years?'],
   15:['Who hosts the platform after the project?','D2 promises that the platform stays online beyond 2030. That needs one of our universities to commit to hosting it. Lucerne is the first choice; the question to IT there is still open. AI support is not promised beyond the project.'],
-  16:['How do we cut the work packages?','Two cuts are on the page; the switch at the top shows either. Cut A has five: management, card sorting, stochastic quiz, evaluation, dissemination – each activity format is its own work package. Cut B has four: management, development (both formats together), evaluation, dissemination – the two formats are built against the same criteria in one work package, and the quiz activities within it are led by Oslo. In both, Lucerne leads management and the card sorting, Oslo the stochastic quiz and Hamburg the evaluation, which now also holds the shared design criteria. Which cut do you prefer? Helmer, would you rather have the stochastic quiz as a work package of its own (cut A), or lead dissemination with the quiz activities inside development (cut B)? Once we agree, one cut is fixed for all of us. Where the closing conference takes place is open: Oslo is tempting, but we have already met in Oslo and Hamburg, so Lucerne would be next.'],
-  17:['Who leads dissemination?','In cut A, Nils or Helmer – whoever leads it, the platform is an activity within it that Lucerne carries. In cut B, Helmer: Oslo would then lead dissemination, and the quiz activities within development. Helmer, would that suit you, and is there capacity in Oslo?'],
-  18:['Cut B: where does the platform sit?','Either in development, as the product on which the activities live, or as an activity of Lucerne within dissemination. On the page it currently sits in development.'],
+  16:['Five work packages or four?','We plan with cut A: five work packages, with a deliberately small WP5 for dissemination – the platform, which carries both formats, the workshops and the closing conference. Cut C is the fallback: WP4 and WP5 are joined into evaluation and transfer, and the workshops move to the format they present – card sorting workshops to WP2, quiz workshops to WP3. Nothing else changes, so we can decide at the end. In both, Lucerne leads management and card sorting, Oslo the stochastic quiz and Hamburg the evaluation, which also holds the shared design criteria. Does this work for you, Nils and Helmer? Where the closing conference takes place is open: Oslo is tempting, but we have already met in Oslo and Hamburg, so Lucerne would be next.'],
+  17:['Who leads WP5?','In cut A, Nils or Helmer; the platform within it is an activity that Lucerne carries. We settle this at the end. In cut C the question falls away: dissemination is part of evaluation and transfer.'],
+  18:['Cut C: where does the platform sit?','In evaluation and transfer, as an activity of Lucerne, because it carries both formats. The alternative is card sorting, which Lucerne leads anyway.'],
   12:['Where else could we submit this?','If Switzerland is not associated, Erasmus+ is closed to us. Do you know another programme or foundation for a project like this?']
 };
 
@@ -405,9 +419,9 @@ var WPKIND={
   mgmt:{name:'Project management',icon:'w-mgmt',col:'#7A6A58'},
   sort:{name:'Card sorting',icon:'w-sort',col:'#C25400'},
   quiz:{name:'Stochastic quiz',icon:'w-quiz',col:'#A8538A'},
-  dev:{name:'Development of the activities',icon:'w-dev',col:'#C25400'},
   eval:{name:'Evaluation and comparison',icon:'w-eval',col:'#00806A'},
-  diss:{name:'Dissemination',icon:'w-diss',col:'#9A6B00'}
+  diss:{name:'Dissemination',icon:'w-diss',col:'#9A6B00'},
+  evdi:{name:'Evaluation and transfer',icon:'w-evdi',col:'#00806A'}
 };
 /* y: was in Jahr 1, 2, 3 geschieht; all: durchgehend; lead null = Leitung des Pakets */
 var ACT={
@@ -424,21 +438,23 @@ var ACT={
   E3:{t:'Trial waves at three universities',lead:'H',wave:true,y:['localise · wave 1 · card sorting as it is (baseline)','localise · wave 2 · revised sets + quiz','localise · wave 3 · further topics + revised quiz']},
   E4:{t:'Evaluation of each wave',lead:'H',y:['synthesis in the summer','synthesis in the summer','synthesis · validation report']},
   D1:{t:'Workshops and contributions in the partners’ networks',lead:null,all:'in each year, online and on site'},
+  DS:{t:'Card sorting workshops in the partners’ networks',lead:'L',all:'in each year, online and on site'},
+  DQ:{t:'Stochastic quiz workshops in the partners’ networks',lead:'O',all:'in each year, online and on site'},
   D2:{t:'Open publication and closing conference',lead:null,y:['','','open publication · outside lecturer · closing conference']}
 };
 var MGMT={k:'mgmt',lead:'L',acts:['M1','M2','M3'],dec:[]};
 var CUTS={
-  A:{label:'Cut A · five work packages',
+  A:{label:'Cut A · five work packages',idea:'The version we plan with: every strand is its own work package, and WP5 is deliberately small – the platform, which carries both formats, the workshops and the closing conference. Who leads WP5 is settled at the end.',
      desc:'Management · card sorting · stochastic quiz · evaluation · dissemination. Lucerne leads WP1 and WP2, Oslo WP3, Hamburg WP4. WP5 is led by Hamburg or Oslo; the platform is an activity of Lucerne within it.',
      wps:[{k:'sort',lead:'L',acts:['S1','S2'],dec:[2]},
           {k:'quiz',lead:'O',acts:['Q1','Q2'],dec:[3,5]},
           {k:'eval',lead:'H',acts:['E1','E2','E3','E4'],dec:[9,10,14]},
           {k:'diss',lead:'?',leadText:'Hamburg or Oslo (decision 17)',acts:['P1','D1','D2'],dec:[17,13,15]}]},
-  B:{label:'Cut B · four work packages',
-     desc:'Management · development · evaluation · dissemination. Lucerne leads WP1 and WP2 – development of both formats, with the quiz activities led by Oslo. Hamburg leads WP3, Oslo WP4.',
-     wps:[{k:'dev',lead:'L',acts:['S1','S2','Q1','Q2','P1'],dec:[2,3,5,18,15]},
-          {k:'eval',lead:'H',acts:['E1','E2','E3','E4'],dec:[9,10,14]},
-          {k:'diss',lead:'O',acts:['D1','D2'],dec:[17,13]}]}
+  C:{label:'Cut C · four work packages, evaluation and transfer together',idea:'The fallback: WP4 and WP5 joined. The workshops move to the format they present; evaluation and transfer keeps the platform (Lucerne’s activity), the open publication and the closing conference.',
+     desc:'Management · card sorting · stochastic quiz · evaluation and transfer. Lucerne leads WP1 and WP2, Oslo WP3, Hamburg WP4. Card sorting and quiz workshops sit with their formats; WP4 holds the platform as an activity of Lucerne, the open publication and the closing conference.',
+     wps:[{k:'sort',lead:'L',acts:['S1','S2','DS'],dec:[2]},
+          {k:'quiz',lead:'O',acts:['Q1','Q2','DQ'],dec:[3,5]},
+          {k:'evdi',lead:'H',acts:['E1','E2','E3','E4','P1','D2'],dec:[9,10,14,18,13,15]}]}
 };
 var WPQ=[['obj','Specific objectives','How they contribute to the general objectives of the project.'],
   ['res','Main results',''],
@@ -448,7 +464,7 @@ var WPQ=[['obj','Specific objectives','How they contribute to the general object
   ['amount','Grant amount and cost-effectiveness','Amounts provisional until the three full-cost rates are known.'],
   ['act','Activities','Per activity the form asks for title, venue, start, end, one leading and the participating organisations, amount and expected results, and a description with the number and profile of participants.']];
 var PART_E=PARTS.filter(function(p){ return p.id==='E'; })[0];
-['sort','quiz','dev','eval','diss'].forEach(function(k){ WPQ.forEach(function(q){ var id=k+'-'+q[0];
+['sort','quiz','eval','diss','evdi'].forEach(function(k){ WPQ.forEach(function(q){ var id=k+'-'+q[0];
   FIELD[id]={id:id,title:q[1],hint:q[2],o:{},part:PART_E}; }); });
 Object.keys(FIELD).forEach(function(id){ if(/^E1/.test(id)){ FIELD[id].label='WP1'; FIELD[id].title=FIELD[id].title.replace(/^WP1 · /,''); } });
 var cut='A', fixed=null;
@@ -616,15 +632,33 @@ function renderVbar(){
     return;
   }
   v.appendChild(el('span','vq','Two cuts of the work packages — decision 16'));
-  ['A','B'].forEach(function(k){ var b=el('button','',CUTS[k].label); b.setAttribute('aria-pressed',String(cut===k));
-    b.onclick=function(){ setCut(k); }; v.appendChild(b); });
-  if(inn){ var f=el('button','main','fix '+CUTS[cut].label.split(' ·')[0]); f.onclick=async function(){
-      if(!confirm('Fix '+CUTS[cut].label+' for all three of us?\n\nThe other cut is then hidden for everyone. Its texts stay in the database, and the choice can be reopened.')) return;
-      f.disabled=true; var res=await sb.from('notes').insert({anchor:'wp-variant',body:cut});
-      if(res.error){ f.disabled=false; alert('Could not save: '+res.error.message); return; } loadNotes(); };
-    v.appendChild(f); }
-  else v.appendChild(el('span','msg','Sign in to fix a cut.'));
-  v.appendChild(el('span','vd',CUTS[cut].desc));
+  /* Vergleichstabelle: eine Spalte je Schnitt; die gezeigte Spalte ist umrandet und mit ● markiert */
+  var keys=['A','C'], box=el('div','cmp'), t=el('table'); box.appendChild(t);
+  var tr=el('tr'); tr.appendChild(el('th'));
+  keys.forEach(function(k){ var th=el('th',k===cut?'on':'',(k===cut?'● ':'○ ')+'Cut '+k); tr.appendChild(th); }); t.appendChild(tr);
+  tr=el('tr'); tr.appendChild(el('th','rh','Idea'));
+  keys.forEach(function(k){ tr.appendChild(el('td',k===cut?'on idea':'idea',CUTS[k].idea)); }); t.appendChild(tr);
+  for(var n=1;n<=5;n++){ tr=el('tr'); tr.appendChild(el('th','rh','WP'+n));
+    keys.forEach(function(k){ var wp=[MGMT].concat(CUTS[k].wps)[n-1], td=el('td',k===cut?'on':'');
+      if(wp){ td.style.setProperty('--wpc',WPKIND[wp.k].col); td.classList.add('wpcell');
+        td.innerHTML=wpIcon(wp.k)+'<b>'+esc(wpName(wp))+'</b><span class="lead">'+esc(wp.lead==='?'?'Hamburg or Oslo':ORG[wp.lead])+'</span>'; }
+      else td.innerHTML='<span class="none">—</span>';
+      tr.appendChild(td); });
+    t.appendChild(tr); }
+  tr=el('tr'); tr.appendChild(el('th'));
+  keys.forEach(function(k){ var td=el('td',k===cut?'on':'');
+    if(k!==cut){ var s=el('button','','show'); s.onclick=function(){ setCut(k); }; td.appendChild(s); }
+    else td.appendChild(el('span','msg','shown below'));
+    if(inn){ var f=el('button','main','fix Cut '+k); f.onclick=async function(){
+        if(!confirm('Fix '+CUTS[k].label+' for all three of us?\n\nThe other cuts are then hidden for everyone. Their texts stay in the database, and the choice can be reopened.')) return;
+        f.disabled=true; var res=await sb.from('notes').insert({anchor:'wp-variant',body:k});
+        if(res.error){ f.disabled=false; alert('Could not save: '+res.error.message); return; }
+        cut=k; loadNotes(); };
+      td.appendChild(f); }
+    tr.appendChild(td); });
+  t.appendChild(tr);
+  v.appendChild(box);
+  if(!inn) v.appendChild(el('span','msg','Sign in to fix a cut.'));
 }
 function rebuildCut(){
   buildE(); renderGantt(); renderMatrix(); renderBudget(); renderVbar();
