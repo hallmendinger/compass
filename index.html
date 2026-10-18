@@ -70,6 +70,54 @@ h1{font-size:2.1rem;line-height:1.1;margin:0;color:var(--accent);letter-spacing:
 .c.all{background:var(--band)}
 .c.wave{border-left:3px double var(--accent)}
 .tln{font-size:.78rem;color:var(--grey);margin:.5rem 0 0}
+.oh2{font-size:.85rem;color:var(--accent);margin:.9rem 0 .35rem}
+
+/* ---- Arbeitspakete: Symbol und Name tragen, die Farbe kommt dazu ------- */
+.wpi{width:1.25em;height:1.25em;vertical-align:-.3em;margin-right:.3em;stroke:var(--wpc,currentColor);
+  fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.wpi .dot{fill:var(--wpc,currentColor);stroke:none}
+.grp{border-left:6px solid var(--wpc,transparent)}
+.grp.th{border-left-color:transparent}
+.grp .tlab .lead{font-size:.7rem;color:var(--grey)}
+.grp .c .who{display:block;font-size:.68rem;color:var(--grey)}
+
+/* Umschalter zwischen den zwei Schnitten */
+.vbar{font-family:var(--sans);font-size:.82rem;border:1px solid var(--ask-rule);border-left:5px solid var(--ask);
+  background:var(--ask-light);padding:.55rem .7rem;margin:0 0 .8rem;display:flex;flex-wrap:wrap;gap:.4rem .7rem;align-items:center}
+.vbar .vq{font-weight:700;color:var(--ask-dark);flex-basis:100%}
+.vbar button[aria-pressed="true"]{font-weight:700;border-width:2px;border-color:var(--ask-dark);background:#fff}
+.vbar button[aria-pressed="true"]::before{content:"● "}
+.vbar button[aria-pressed="false"]::before{content:"○ "}
+.vbar .vfix{font-weight:700;color:var(--ink)}
+.vbar .vd{flex-basis:100%;color:var(--ink);margin:.1rem 0 0}
+
+details.annex{font-family:var(--sans);font-size:.8rem;border-top:1px solid var(--rule);margin:.8rem 0 0}
+details.annex>summary{list-style:none;cursor:pointer;font-weight:700;color:var(--accent);padding:.45rem 0;font-size:.85rem}
+details.annex>summary::-webkit-details-marker{display:none}
+.mx,.bud{overflow-x:auto}
+.mx table,.bud table{border-collapse:collapse;min-width:40rem;width:100%}
+.mx th,.mx td,.bud th,.bud td{border:1px solid var(--line);padding:.35rem .45rem;vertical-align:top;text-align:left}
+.mx th,.bud th{background:var(--band);color:var(--accent-dark);font-size:.74rem}
+.mx td.wpc,.bud td.wpc{border-left:6px solid var(--wpc);white-space:nowrap;font-weight:700}
+.mx .none{color:var(--grey);font-style:italic}
+.mx ul{margin:0;padding-left:1rem}
+.mx .gen{background:var(--band)}
+.bud td.num{text-align:right;white-space:nowrap}
+.bud .open{color:var(--grey)}
+
+/* Abschnitt je Arbeitspaket und Unterabschnitte */
+details.grpbox{margin:0 0 .9rem 1rem;border-left:6px solid var(--wpc,var(--rule));padding-left:.7rem;scroll-margin-top:5.5rem}
+details.grpbox>summary{list-style:none;cursor:pointer;padding:.55rem 0;display:flex;flex-wrap:wrap;align-items:baseline;gap:.2rem .8rem}
+details.grpbox>summary::-webkit-details-marker{display:none}
+details.grpbox>summary h3{margin:0;font-size:1.02rem;color:var(--ink);display:flex;align-items:center}
+details.grpbox>summary .lead{font-family:var(--sans);font-size:.78rem;color:var(--grey)}
+details.grpbox details.field{margin-left:0}
+.grpintro{font-family:var(--sans);font-size:.8rem;color:var(--grey);margin:0 0 .5rem;max-width:52rem}
+.actlist{font-family:var(--sans);font-size:.8rem;margin:0 0 .7rem}
+.actlist table{border-collapse:collapse;width:100%;max-width:52rem}
+.actlist td,.actlist th{border-bottom:1px solid var(--line);padding:.25rem .5rem .25rem 0;text-align:left;vertical-align:top}
+.actlist th{font-size:.7rem;color:var(--grey);font-weight:700}
+details.grpbox.old{--wpc:var(--line)}
 details.part,details.field{scroll-margin-top:5.5rem}
 
 /* ---- Leiste oben -------------------------------------------------- */
@@ -186,6 +234,12 @@ table.adm td:first-child{font-family:var(--sans);font-size:.78rem;color:var(--gr
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
 <symbol id="i-decide" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><text x="12" y="17.4" text-anchor="middle" font-size="15.5" font-weight="800" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" fill="currentColor" stroke="none">?</text></symbol>
+<symbol id="w-mgmt" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 3.5h6v3H9zM8.5 11.5h7M8.5 15.5h4.5"/></symbol>
+<symbol id="w-sort" viewBox="0 0 24 24"><rect x="3" y="8" width="10" height="13" rx="1.5"/><rect x="11" y="3" width="10" height="13" rx="1.5"/></symbol>
+<symbol id="w-quiz" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><circle class="dot" cx="8.6" cy="8.6" r="1.5"/><circle class="dot" cx="12" cy="12" r="1.5"/><circle class="dot" cx="15.4" cy="15.4" r="1.5"/></symbol>
+<symbol id="w-dev" viewBox="0 0 24 24"><path d="M4 20l1-4.5L16.5 4 20 7.5 8.5 19z"/><path d="M14 6.5l3.5 3.5"/></symbol>
+<symbol id="w-eval" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6"/><path d="M15 15l5.5 5.5"/></symbol>
+<symbol id="w-diss" viewBox="0 0 24 24"><circle class="dot" cx="12" cy="12" r="2"/><path d="M8.2 7.8a6 6 0 0 0 0 8.4M15.8 7.8a6 6 0 0 1 0 8.4M5.2 4.8a10.2 10.2 0 0 0 0 14.4M18.8 4.8a10.2 10.2 0 0 1 0 14.4"/></symbol>
 <symbol id="i-prop" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><text x="12" y="17.3" text-anchor="middle" font-size="14.5" font-weight="800" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" fill="currentColor" stroke="none">P</text></symbol>
 </svg>
 <main>
@@ -207,52 +261,18 @@ table.adm td:first-child{font-family:var(--sans);font-size:.78rem;color:var(--gr
 <nav class="jump" aria-label="Parts of the form">
 <a href="#p-A">A · Context</a><a href="#p-B">B · Relevance</a><a href="#p-C">C · Partnership</a><a href="#p-D">D · Impact</a><a href="#p-E">E · Work packages</a><a href="#p-F">F · Summary</a><a href="#p-G">G · Formalities</a>
 </nav>
-<div class="tl" role="table" aria-label="Timeline">
-<div class="grp th" role="row"><div role="columnheader"></div><div role="columnheader">Year 1 · 2027/28</div><div role="columnheader">Year 2 · 2028/29</div><div role="columnheader">Year 3 · 2029/30</div></div>
-<div class="grp" role="rowgroup">
-<a class="tlab" href="#f-E1a" style="grid-row:1 / span 1" role="rowheader"><b>WP1</b>Coordination</a>
-<div class="c all" style="grid-row:1">kick-off · consortium agreement · ethics and data protection · two consortium meetings a year, at the three universities in turn</div>
-</div>
-<div class="grp" role="rowgroup">
-<a class="tlab" href="#f-WP2" style="grid-row:1 / span 1" role="rowheader"><b>WP2</b>Design criteria and instruments</a>
-<div class="c" style="grid-row:1">first version · recording tool for university teaching · pilot</div>
-<div class="c" style="grid-row:1">revised after wave 1</div>
-<div class="c" style="grid-row:1">final version</div>
-</div>
-<div class="grp" role="rowgroup">
-<a class="tlab" href="#f-WP3" style="grid-row:1 / span 3" role="rowheader"><b>WP3</b>Development</a>
-<div class="c" style="grid-row:1"><span class="sub">Card sorting</span>consolidate the eight sets</div>
-<div class="c" style="grid-row:1">revise after wave 1</div>
-<div class="c" style="grid-row:1">final version · sets on two further topics</div>
-<div class="c" style="grid-row:2"><span class="sub">Stochastic quiz</span>build two to three activities</div>
-<div class="c" style="grid-row:2">first use · revise</div>
-<div class="c" style="grid-row:2">second use · final version</div>
-<div class="c" style="grid-row:3"><span class="sub">AI support</span>extend Kasper · build the quiz assistant</div>
-<div class="c" style="grid-row:3">staff at three universities design with it</div>
-<div class="c" style="grid-row:3">guidelines · open documentation</div>
-</div>
-<div class="grp" role="rowgroup">
-<a class="tlab" href="#f-WP4" style="grid-row:1 / span 2" role="rowheader"><b>WP4</b>Trials and evaluation</a>
-<div class="c wave" style="grid-row:1"><span class="sub">Trial waves</span>localise · wave 1 · card sorting as it is (baseline)</div>
-<div class="c wave" style="grid-row:1">localise · wave 2 · revised sets + quiz</div>
-<div class="c wave" style="grid-row:1">localise · wave 3 · further topics + revised quiz</div>
-<div class="c" style="grid-row:2"><span class="sub">Evaluation</span>synthesis in the summer</div>
-<div class="c" style="grid-row:2">synthesis in the summer</div>
-<div class="c" style="grid-row:2">synthesis · validation report</div>
-</div>
-<div class="grp" role="rowgroup">
-<a class="tlab" href="#f-WP5" style="grid-row:1 / span 1" role="rowheader"><b>WP5</b>Dissemination</a>
-<div class="c" style="grid-row:1">contributions in the partners’ networks</div>
-<div class="c" style="grid-row:1">contributions in the partners’ networks</div>
-<div class="c" style="grid-row:1">open publication · outside lecturer · closing conference</div>
-</div>
-</div>
-<p class="tln">Courses start in Lucerne in September, in Hamburg in October and in Oslo in January, so one trial wave is an academic year. The summers carry the revisions. Click a row to open its work package.</p>
+<div class="vbar" id="vbar"></div>
+<h3 class="oh2">Gantt chart</h3>
+<div class="tl" role="table" aria-label="Gantt chart" id="gantt"></div>
+<p class="tln">Courses start in Lucerne in September, in Hamburg in October and in Oslo in January, so one trial wave is an academic year. The summers carry the revisions. Click a work package to open it.</p>
+<details class="annex" id="matrix-box"><summary><span class="tw"></span>Logical flow matrix</summary><div id="matrix"></div></details>
+<details class="annex" id="budget-box"><summary><span class="tw"></span>Budget overview</summary><div id="budget"></div></details>
 </section>
 
 <div class="legend">
 <p><b>Each field of the form opens on its own.</b> On the left, what is for us: notes, open decisions, what a field is waiting for. On the right, the application text as a reviewer will read it.</p>
 <p><svg class="ico" style="stroke:var(--ask)"><use href="#i-decide"/></svg><b>A circled question mark</b> is an open decision; open it to answer. <svg class="ico" style="stroke:var(--ask)"><use href="#i-prop"/></svg><b>A circled P</b> marks a proposal. The text on the right is edited by one person at a time — whoever presses “edit” holds the field until they save or cancel, and every earlier version is kept.</p>
+<p><b>Each work package has its own symbol</b> — a clipboard for project management, two cards for card sorting, a die for the stochastic quiz, a pencil for development, a magnifying glass for evaluation, waves for dissemination. The symbol stands wherever the work package appears: in the Gantt chart, the matrix, the budget and the form.</p>
 <p>The form shows the character limit of each field only once it is open online; until then, each field counts its characters.</p>
 </div>
 
@@ -274,7 +294,7 @@ var DEC={
   2:['Do we open the assistants for reuse?','Keep them as our own tools, use them within the project at all three universities, or publish them for anyone. We lean to the middle: the team first.'],
   3:['Does the AI run during the Borel activity, or only while we build it?','If it only helps us build it, Borel ships as a self-contained file like the card sets, and anyone can use it. If it runs live, every user needs their own AI access, and the assistant has to be published with it.'],
   4:['What do we each count as our own contribution?','Nothing is declared or evidenced. What can each institution realistically put in beside the grant?'],
-  5:['Who leads the stochastic quiz?','Henrike’s proposal: Helmer leads the development of the stochastic quiz within WP3, with his experience in game-based learning. Does that work for you, Helmer and Nils?'],
+  5:['Who leads the stochastic quiz?','Henrike’s proposal: Helmer leads the stochastic quiz, with his experience in game-based learning – as its own work package in cut A, as the quiz activities within development in cut B. Does that work for you, Helmer and Nils?'],
   6:['How many hours can each of us contribute?','About 13 PM from the three of us together. The split need not be even.'],
   7:['How do we staff the research posts — and could they be doctoral posts?','About 21 PM in all, a little over half a post; the split should follow the work. A doctoral post would have to be applied for here, and the hours would grow. Nils, could Hamburg bring one in?'],
   8:['Where does the technical work sit?','About 9 PM, a quarter of a post, separate from the research posts. At which university?'],
@@ -284,7 +304,9 @@ var DEC={
   13:['Can we name lecturers outside our three universities?','B2 and B3 are written cautiously: in the final year, a lecturer who was not involved in the design uses the activities. The strong version would read — B2: “… and lecturers at other institutions take it up in the final year.” B3: “… and in the final year lecturers at other institutions use them in their own teaching, so that what works in one place can be shown to work elsewhere.” For that we need two or three colleagues, for instance through INDRUM or ERME, who commit before we submit and join as associated partners. Who could we ask?'],
   14:['Are the trials in Hamburg and Oslo secured?','B7, B12 and B14 say that the activities are trialled in regular courses at all three universities. Earlier planning had Lucerne from September, Hamburg from October and Oslo from January. Can each of you confirm a course in which the activities can run in each of the three years?'],
   15:['Who hosts the platform after the project?','D2 promises that the platform stays online beyond 2030. That needs one of our universities to commit to hosting it. Lucerne is the first choice; the question to IT there is still open. AI support is not promised beyond the project.'],
-  16:['Who leads which work package?','Not yet in the application text. Henrike’s proposal: the overall lead stays in Lucerne because of the groundwork – WP1 coordination and WP3 development; Hamburg leads WP2 design criteria and instruments and WP4 trials and evaluation, which belong together methodologically; dissemination (WP5) is a shared task. Where the closing conference takes place is open: Oslo is tempting, but we have already met in Oslo and Hamburg, so Lucerne would be next.'],
+  16:['How do we cut the work packages?','Two cuts are on the page; the switch at the top shows either. Cut A has five: management, card sorting, stochastic quiz, evaluation, dissemination – each activity format is its own work package. Cut B has four: management, development (both formats together), evaluation, dissemination – the two formats are built against the same criteria in one work package, and the quiz activities within it are led by Oslo. In both, Lucerne leads management and the card sorting, Oslo the stochastic quiz and Hamburg the evaluation, which now also holds the shared design criteria. Which cut do you prefer? Helmer, would you rather have the stochastic quiz as a work package of its own (cut A), or lead dissemination with the quiz activities inside development (cut B)? Once we agree, one cut is fixed for all of us. Where the closing conference takes place is open: Oslo is tempting, but we have already met in Oslo and Hamburg, so Lucerne would be next.'],
+  17:['Who leads dissemination?','In cut A, Nils or Helmer – whoever leads it, the platform is an activity within it that Lucerne carries. In cut B, Helmer: Oslo would then lead dissemination, and the quiz activities within development. Helmer, would that suit you, and is there capacity in Oslo?'],
+  18:['Cut B: where does the platform sit?','Either in development, as the product on which the activities live, or as an activity of Lucerne within dissemination. On the page it currently sits in development.'],
   12:['Where else could we submit this?','If Switzerland is not associated, Erasmus+ is closed to us. Do you know another programme or foundation for a project like this?']
 };
 
@@ -294,7 +316,9 @@ var PARTS=[
  {id:'A', title:'A · Context', intro:'Administrative fields, filled in provisionally.',
   fields:[['A-title','Project title','Acronym and its expansion here; the rest goes into the summary.',{dec:[1]}],
           ['A-admin','Field, dates, National Agency, language, lump sum','Provisional. The National Agency depends on Switzerland’s association to Erasmus+ from the 2027 call: the Council of States approved the credit on 1 October 2026, the National Council is expected to decide in December. The ECHE has been applied for.',{dec:[11,12]}]]},
- {id:'B', title:'B · Relevance of the project', fields:[
+ {id:'B', title:'B · Relevance of the project',
+  groups:[['Priorities and topics',['B1','B2']],['Project description',['B3','B4','B5','B6','B7','B8','B9','B10']],['Needs analysis',['B11','B12','B13','B14']]],
+  fields:[
    ['B1','Priorities','Based on the 2026 call; to be updated for 2027.',{}],
    ['B2','How does the project address the selected priorities?','',{dec:[13]}],
    ['B3','Motivation — why should it be funded?','Notes on how we frame the project are collected here.',{dec:[13],lit:[
@@ -337,7 +361,7 @@ var PARTS=[
  ]},
  {id:'C', title:'C · Partnership and cooperation arrangements', fields:[
    ['C1','How did you form your partnership?','',{}],
-   ['C2','Task allocation','Who leads which work package is ours to settle together; the shares follow the work, not an even split.',{dec:[16,5,6,7,8]}],
+   ['C2','Task allocation','The leads follow the cut we fix (decision 16); the shares follow the work, not an even split.',{dec:[16,17,5,6,7,8]}],
    ['C3','Coordination and communication','',{}]
  ]},
  {id:'D', title:'D · Impact and dissemination', fields:[
@@ -346,7 +370,7 @@ var PARTS=[
    ['D3','Dissemination','',{}],
    ['D4','At which level, and how?','',{}]
  ]},
- {id:'E', title:'E · Project design and implementation', intro:'Five work packages: coordination, design criteria, development, trials, dissemination. WP1 project management has seven questions and a grant amount; work packages 2 to 5 have six questions each, and every work package lists its activities.', fields:[
+ {id:'E', title:'E · Project design and implementation', intro:'Project management (WP1) has seven questions and a grant amount, and may take at most 20 % of the grant. Every other work package has six questions and lists its activities; each activity has one leading organisation, and the others take part.', fields:[
    ['E1a','WP1 · Monitoring — staff, timing, frequency','',{}],
    ['E1b','WP1 · Budget control and time management','',{dec:[4]}],
    ['E1c','WP1 · Risks','',{}],
@@ -355,14 +379,14 @@ var PARTS=[
    ['E1f','WP1 · Green practices','',{}],
    ['E1g','WP1 · Participation and civic engagement','',{}],
    ['E1h','WP1 · Grant amount','Open: whether EUR 55,000 carries both the working time and the travel. At the rates used so far, working time comes to about 30,000 and travel to about 22,500, which leaves little for the closing conference.',{}],
-   ['WP2','WP2 · Design criteria and instruments — six questions','Specific objectives · main results · qualitative indicators · quantitative indicators · tasks of each organisation · grant amount. Amounts provisional until the three full-cost rates are known.',{}],
-   ['WP3','WP3 · Activities and AI-supported design — six questions','The AI support is part of developing the activities, not a separate product. Amounts provisional.',{dec:[2,3,5,10]}],
-   ['WP4','WP4 · Trials and evaluation — six questions','The evaluation serves the revisions. Amounts provisional.',{dec:[9,14]}],
-   ['WP5','WP5 · Dissemination — six questions','Amounts provisional; the closing conference still needs its own costs.',{dec:[13,15]}],
-   ['ACT2','Activities of WP2','Per activity the form asks for title, venue, start, end, leading and participating organisations, amount, expected results, and a description with the number and profile of participants.',{}],
-   ['ACT3','Activities of WP3','',{dec:[5,10]}],
-   ['ACT4','Activities of WP4','',{dec:[14]}],
-   ['ACT5','Activities of WP5','',{}]
+   ['WP2','17 Oct · WP2 Design criteria and instruments','Specific objectives · main results · qualitative indicators · quantitative indicators · tasks of each organisation · grant amount. Amounts provisional until the three full-cost rates are known.',{old:true}],
+   ['WP3','17 Oct · WP3 Activities and AI-supported design','The AI support is part of developing the activities, not a separate product. Amounts provisional.',{old:true}],
+   ['WP4','17 Oct · WP4 Trials and evaluation','The evaluation serves the revisions. Amounts provisional.',{old:true}],
+   ['WP5','17 Oct · WP5 Dissemination','Amounts provisional; the closing conference still needs its own costs.',{old:true}],
+   ['ACT2','17 Oct · Activities of WP2','Per activity the form asks for title, venue, start, end, leading and participating organisations, amount, expected results, and a description with the number and profile of participants.',{old:true}],
+   ['ACT3','17 Oct · Activities of WP3','',{old:true}],
+   ['ACT4','17 Oct · Activities of WP4','',{old:true}],
+   ['ACT5','17 Oct · Activities of WP5','',{old:true}]
  ]},
  {id:'F', title:'F · Project summary', fields:[
    ['F','Objectives · Implementation · Results','Published if the project is funded. A first draft from the fields as they stand; to be rewritten last, from the finished application.',{}]
@@ -373,6 +397,62 @@ var ADMIN=[['Field','Higher Education'],['Start','01/09/2027'],['Duration','36 m
   ['National Agency','Movetia, if Switzerland coordinates — depends on the association'],['Language','EN'],['Lump sum','400 000 EUR']];
 
 var FIELD={}; PARTS.forEach(function(p){ p.fields.forEach(function(f){ FIELD[f[0]]={id:f[0],title:f[1],hint:f[2],o:f[3],part:p,textless:(p.nofieldtext||[]).indexOf(f[0])>=0}; }); });
+
+/* ---------- Zwei Schnitte der Arbeitspakete (Rike, 18.10.) ----------------------
+   Symbol und Name tragen die Unterscheidung, die Farbe kommt dazu (Helmer). */
+var ORG={L:'Lucerne',H:'Hamburg',O:'Oslo'}, ALLORG=['L','H','O'];
+var WPKIND={
+  mgmt:{name:'Project management',icon:'w-mgmt',col:'#7A6A58'},
+  sort:{name:'Card sorting',icon:'w-sort',col:'#C25400'},
+  quiz:{name:'Stochastic quiz',icon:'w-quiz',col:'#A8538A'},
+  dev:{name:'Development of the activities',icon:'w-dev',col:'#C25400'},
+  eval:{name:'Evaluation and comparison',icon:'w-eval',col:'#00806A'},
+  diss:{name:'Dissemination',icon:'w-diss',col:'#9A6B00'}
+};
+/* y: was in Jahr 1, 2, 3 geschieht; all: durchgehend; lead null = Leitung des Pakets */
+var ACT={
+  M1:{t:'Kick-off, consortium agreement, ethics and data protection',lead:'L',y:['at the start of the project','','']},
+  M2:{t:'Consortium meetings',lead:'L',all:'two a year, at the three universities in turn'},
+  M3:{t:'Monitoring and budget control',lead:'L',all:'throughout the project'},
+  S1:{t:'Card sorting sets',lead:'L',y:['consolidate the eight sets','revise after wave 1','final version · sets on two further topics']},
+  S2:{t:'Kasper, the card sorting assistant',lead:'L',y:['extend Kasper to university level','staff at three universities design with it','guidelines · open documentation']},
+  Q1:{t:'Stochastic quiz activities',lead:'O',y:['build two to three activities','first use · revise','second use · final version']},
+  Q2:{t:'Quiz assistant',lead:'O',y:['build it alongside the activities','staff at three universities design with it','open documentation']},
+  P1:{t:'Platform for the activities',lead:'L',y:['set up','revised activities online','open release in three languages']},
+  E1:{t:'Shared design criteria',lead:'H',y:['first version','revised after wave 1','final version']},
+  E2:{t:'Instruments: recording tool, reflection format, observation scheme',lead:'H',y:['adapt for university teaching · pilot','','']},
+  E3:{t:'Trial waves at three universities',lead:'H',wave:true,y:['localise · wave 1 · card sorting as it is (baseline)','localise · wave 2 · revised sets + quiz','localise · wave 3 · further topics + revised quiz']},
+  E4:{t:'Evaluation of each wave',lead:'H',y:['synthesis in the summer','synthesis in the summer','synthesis · validation report']},
+  D1:{t:'Workshops and contributions in the partners’ networks',lead:null,all:'in each year, online and on site'},
+  D2:{t:'Open publication and closing conference',lead:null,y:['','','open publication · outside lecturer · closing conference']}
+};
+var MGMT={k:'mgmt',lead:'L',acts:['M1','M2','M3'],dec:[]};
+var CUTS={
+  A:{label:'Cut A · five work packages',
+     desc:'Management · card sorting · stochastic quiz · evaluation · dissemination. Lucerne leads WP1 and WP2, Oslo WP3, Hamburg WP4. WP5 is led by Hamburg or Oslo; the platform is an activity of Lucerne within it.',
+     wps:[{k:'sort',lead:'L',acts:['S1','S2'],dec:[2]},
+          {k:'quiz',lead:'O',acts:['Q1','Q2'],dec:[3,5]},
+          {k:'eval',lead:'H',acts:['E1','E2','E3','E4'],dec:[9,10,14]},
+          {k:'diss',lead:'?',leadText:'Hamburg or Oslo (decision 17)',acts:['P1','D1','D2'],dec:[17,13,15]}]},
+  B:{label:'Cut B · four work packages',
+     desc:'Management · development · evaluation · dissemination. Lucerne leads WP1 and WP2 – development of both formats, with the quiz activities led by Oslo. Hamburg leads WP3, Oslo WP4.',
+     wps:[{k:'dev',lead:'L',acts:['S1','S2','Q1','Q2','P1'],dec:[2,3,5,18,15]},
+          {k:'eval',lead:'H',acts:['E1','E2','E3','E4'],dec:[9,10,14]},
+          {k:'diss',lead:'O',acts:['D1','D2'],dec:[17,13]}]}
+};
+var WPQ=[['obj','Specific objectives','How they contribute to the general objectives of the project.'],
+  ['res','Main results',''],
+  ['qual','Qualitative indicators',''],
+  ['quant','Quantitative indicators',''],
+  ['tasks','Tasks and responsibilities of each organisation',''],
+  ['amount','Grant amount and cost-effectiveness','Amounts provisional until the three full-cost rates are known.'],
+  ['act','Activities','Per activity the form asks for title, venue, start, end, one leading and the participating organisations, amount and expected results, and a description with the number and profile of participants.']];
+var PART_E=PARTS.filter(function(p){ return p.id==='E'; })[0];
+['sort','quiz','dev','eval','diss'].forEach(function(k){ WPQ.forEach(function(q){ var id=k+'-'+q[0];
+  FIELD[id]={id:id,title:q[1],hint:q[2],o:{},part:PART_E}; }); });
+Object.keys(FIELD).forEach(function(id){ if(/^E1/.test(id)){ FIELD[id].label='WP1'; FIELD[id].title=FIELD[id].title.replace(/^WP1 · /,''); } });
+var cut='A', fixed=null;
+try{ var c0=localStorage.getItem('erasmus-cut'); if(CUTS[c0]) cut=c0; }catch(e){}
 
 /* ---------- Hilfen ---------------------------------------------------------------- */
 function el(tag,cls,txt){ var e=document.createElement(tag); if(cls) e.className=cls; if(txt!=null) e.textContent=txt; return e; }
@@ -403,7 +483,7 @@ function buildDec(n,host){
 function buildField(F,host){
   var d=el('details','field'); d.id='f-'+F.id; d.open=!!openState[F.id];
   d.addEventListener('toggle',function(){ remember(F.id,d.open); });
-  var s=el('summary'); s.appendChild(el('span','fid',F.id.indexOf('across')===0?'':F.id));
+  var s=el('summary'); s.appendChild(el('span','fid',F.label!=null?F.label:F.id));
   s.appendChild(el('span','ft',F.title)); var tag=el('span','tag'); s.appendChild(tag); d.appendChild(s);
   var cols=el('div','cols');
   var us=el('div','us'); us.appendChild(el('div','colhead','For us'));
@@ -429,19 +509,148 @@ PARTS.forEach(function(p){
   s.appendChild(h); s.appendChild(el('span','counts')); d.appendChild(s);
   if(p.intro) d.appendChild(el('p','partintro',p.intro));
   if(p.admin){ var t=el('table','adm'); ADMIN.forEach(function(r){ var tr=el('tr'); tr.appendChild(el('td','',r[0])); tr.appendChild(el('td','',r[1])); t.appendChild(tr); }); d.appendChild(t); }
-  p.fields.forEach(function(f){ buildField(FIELD[f[0]],d); });
+  if(p.id==='E'){ var eb=el('div'); eb.id='e-body'; d.appendChild(eb); }
+  else if(p.groups){ p.groups.forEach(function(g,i){ var gb=groupBox('grp-'+p.id+i,esc(g[0]),'',null,''); g[1].forEach(function(id){ buildField(FIELD[id],gb); }); d.appendChild(gb); }); }
+  else p.fields.forEach(function(f){ buildField(FIELD[f[0]],d); });
   doc.appendChild(d);
 });
 
+/* ---------- Arbeitspakete nach dem gewaehlten Schnitt -------------------------- */
+function esc(t){ return String(t).replace(/[&<>"]/g,function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+function wpIcon(k){ return '<svg class="wpi" aria-hidden="true"><use href="#'+WPKIND[k].icon+'"/></svg>'; }
+function wpName(wp){ return wp.name || WPKIND[wp.k].name; }
+function wpList(){ return [MGMT].concat(CUTS[cut].wps); }
+function leadName(wp){ return wp.lead==='?' ? wp.leadText : ORG[wp.lead]; }
+function actLead(a,wp){ return ACT[a].lead || wp.lead; }
+function actLeadName(a,wp){ var l=actLead(a,wp); return l==='?' ? 'decision 17' : ORG[l]; }
+function others(a,wp){ var l=actLead(a,wp); return ALLORG.filter(function(o){ return o!==l; }).map(function(o){ return ORG[o]; }).join(', '); }
+function groupBox(id,titleHTML,lead,col,cls){
+  var d=el('details','grpbox'+(cls?' '+cls:'')); d.id=id; d.open=!!openState[id];
+  if(col) d.style.setProperty('--wpc',col);
+  d.addEventListener('toggle',function(){ remember(id,d.open); });
+  var s=el('summary'); var h=el('h3'); h.innerHTML='<span class="tw"></span>'+titleHTML; s.appendChild(h);
+  if(lead) s.appendChild(el('span','lead',lead)); d.appendChild(s); return d;
+}
+function actTable(wp,n){
+  var box=el('div','actlist'), t=el('table'); box.appendChild(t);
+  t.innerHTML='<tr><th>Activity</th><th>Leading organisation</th><th>Taking part</th></tr>';
+  wp.acts.forEach(function(a,i){ var tr=el('tr');
+    tr.appendChild(el('td','',n+'.'+(i+1)+' '+ACT[a].t)); tr.appendChild(el('td','',actLeadName(a,wp)));
+    tr.appendChild(el('td','',others(a,wp))); t.appendChild(tr); });
+  return box;
+}
+function buildE(){
+  var eb=document.getElementById('e-body'); eb.textContent=''; var cur=[];
+  wpList().forEach(function(wp,i){
+    var n=i+1, K=WPKIND[wp.k];
+    var g=groupBox('wp-'+wp.k,wpIcon(wp.k)+'WP'+n+' · '+esc(wpName(wp)),'Lead: '+leadName(wp),K.col,'');
+    g.appendChild(actTable(wp,n));
+    var ids = wp.k==='mgmt' ? ['E1a','E1b','E1c','E1d','E1e','E1f','E1g','E1h'] : WPQ.map(function(q){ return wp.k+'-'+q[0]; });
+    if(wp.k!=='mgmt'){ ids.forEach(function(id){ FIELD[id].label='WP'+n; FIELD[id].o={}; }); FIELD[wp.k+'-tasks'].o={dec:wp.dec}; }
+    ids.forEach(function(id){ buildField(FIELD[id],g); cur.push(id); });
+    eb.appendChild(g);
+  });
+  var old=groupBox('wp-old','Earlier cut of 17 October — texts for reuse','',null,'old');
+  old.appendChild(el('p','grpintro','Kept so that nothing is lost: the texts move into the work packages above as we rewrite them. The design criteria now belong to evaluation.'));
+  ['WP2','WP3','WP4','WP5','ACT2','ACT3','ACT4','ACT5'].forEach(function(id){ buildField(FIELD[id],old); cur.push(id); });
+  eb.appendChild(old);
+  PART_E.cur=cur;
+}
+
+/* ---------- Gantt, Matrix, Budget ------------------------------------------------ */
+function renderGantt(){
+  var g=document.getElementById('gantt'); g.textContent='';
+  var th=el('div','grp th'); th.setAttribute('role','row');
+  th.innerHTML='<div role="columnheader"></div><div role="columnheader">Year 1 · 2027/28</div><div role="columnheader">Year 2 · 2028/29</div><div role="columnheader">Year 3 · 2029/30</div>';
+  g.appendChild(th);
+  wpList().forEach(function(wp,i){
+    var n=i+1, K=WPKIND[wp.k], grp=el('div','grp'); grp.setAttribute('role','rowgroup'); grp.style.setProperty('--wpc',K.col);
+    var lab=el('a','tlab'); lab.href='#wp-'+wp.k; lab.style.gridRow='1 / span '+wp.acts.length; lab.setAttribute('role','rowheader');
+    lab.innerHTML='<span>'+wpIcon(wp.k)+'<b>WP'+n+'</b></span>'+esc(wpName(wp))+'<span class="lead">Lead: '+esc(leadName(wp))+'</span>';
+    grp.appendChild(lab);
+    wp.acts.forEach(function(a,r){ var A=ACT[a], head='<span class="sub">'+n+'.'+(r+1)+' '+esc(A.t)+'<span class="who">'+esc(actLeadName(a,wp))+'</span></span>';
+      if(A.all){ var c=el('div','c all'); c.style.gridRow=r+1; c.innerHTML=head+esc(A.all); grp.appendChild(c); }
+      else A.y.forEach(function(y,j){ var c=el('div','c'+(A.wave?' wave':'')); c.style.gridRow=r+1; c.innerHTML=(j===0?head:'')+esc(y); grp.appendChild(c); });
+    });
+    g.appendChild(grp);
+  });
+}
+function excerpt(id){
+  if(!me||!me.name) return '<span class="none">sign in to see the text</span>';
+  var b=(texts[id]&&texts[id].body||'').trim();
+  if(!b) return '<span class="none">not written yet</span> · <a href="#f-'+id+'">open</a>';
+  return esc(b.length>320?b.slice(0,320).replace(/\s+\S*$/,'')+' …':b)+' <a href="#f-'+id+'">open</a>';
+}
+function renderMatrix(){
+  var m=document.getElementById('matrix'); var h='<div class="mx"><table>';
+  h+='<tr class="gen"><th>Priorities</th><td colspan="4">'+excerpt('B1')+'</td></tr>';
+  h+='<tr class="gen"><th>General objectives</th><td colspan="4">'+excerpt('B4')+'</td></tr>';
+  h+='<tr><th>Work package</th><th>Specific objectives</th><th>Activities</th><th>Expected results</th><th>Indicators</th></tr>';
+  wpList().forEach(function(wp,i){ var n=i+1, K=WPKIND[wp.k];
+    var acts='<ul>'+wp.acts.map(function(a,r){ return '<li>'+n+'.'+(r+1)+' '+esc(ACT[a].t)+'</li>'; }).join('')+'</ul>';
+    h+='<tr><td class="wpc" style="--wpc:'+K.col+'">'+wpIcon(wp.k)+'WP'+n+'<br>'+esc(wpName(wp))+'</td>';
+    if(wp.k==='mgmt') h+='<td colspan="1"><span class="none">no specific objectives — contributes to all of them</span></td><td>'+acts+'</td><td colspan="2"><span class="none">not scored on its own</span></td></tr>';
+    else h+='<td>'+excerpt(wp.k+'-obj')+'</td><td>'+acts+'</td><td>'+excerpt(wp.k+'-res')+'</td><td><b>qualitative</b> '+excerpt(wp.k+'-qual')+'<br><b>quantitative</b> '+excerpt(wp.k+'-quant')+'</td></tr>';
+  });
+  m.innerHTML=h+'</table></div>';
+}
+function renderBudget(){
+  var b=document.getElementById('budget'); var h='<div class="bud"><table><tr><th>Work package</th><th>Lead</th><th>Lucerne</th><th>Hamburg</th><th>Oslo</th><th>Total (EUR)</th></tr>';
+  wpList().forEach(function(wp,i){ var n=i+1, K=WPKIND[wp.k];
+    h+='<tr><td class="wpc" style="--wpc:'+K.col+'">'+wpIcon(wp.k)+'WP'+n+' · '+esc(wpName(wp))+'</td><td>'+esc(wp.lead==='?'?'open':ORG[wp.lead])+'</td>';
+    h+='<td class="num open">·</td><td class="num open">·</td><td class="num open">·</td><td class="num open">'+(wp.k==='mgmt'?'55 000 provisional':'·')+'</td></tr>'; });
+  h+='<tr><th>Total</th><th></th><th></th><th></th><th></th><th class="num">400 000</th></tr></table></div>';
+  h+='<p class="tln">The form and the final report present the budget by work package and by organisation, as here. Amounts follow once the three full-cost rates are known. Project management may take at most 20 % of the grant, that is EUR 80 000.</p>';
+  b.innerHTML=h;
+}
+function renderVbar(){
+  var v=document.getElementById('vbar'); v.textContent='';
+  var inn=!!(me&&me.name);
+  if(fixed){
+    v.appendChild(el('span','vfix',CUTS[fixed.v].label+' is fixed'));
+    v.appendChild(el('span','',' — by '+(fixed.name||'someone')+', '+when(fixed.at)+'. The other cut is hidden; its texts stay in the database.'));
+    v.appendChild(el('span','vd',CUTS[fixed.v].desc));
+    if(inn){ var r=el('button','','reopen the choice'); r.onclick=async function(){
+      if(!confirm('Reopen the choice between the two cuts for all three of us?')) return;
+      r.disabled=true; await sb.from('notes').insert({anchor:'wp-variant',body:'open'}); loadNotes(); }; v.appendChild(r); }
+    return;
+  }
+  v.appendChild(el('span','vq','Two cuts of the work packages — decision 16'));
+  ['A','B'].forEach(function(k){ var b=el('button','',CUTS[k].label); b.setAttribute('aria-pressed',String(cut===k));
+    b.onclick=function(){ setCut(k); }; v.appendChild(b); });
+  if(inn){ var f=el('button','main','fix '+CUTS[cut].label.split(' ·')[0]); f.onclick=async function(){
+      if(!confirm('Fix '+CUTS[cut].label+' for all three of us?\n\nThe other cut is then hidden for everyone. Its texts stay in the database, and the choice can be reopened.')) return;
+      f.disabled=true; var res=await sb.from('notes').insert({anchor:'wp-variant',body:cut});
+      if(res.error){ f.disabled=false; alert('Could not save: '+res.error.message); return; } loadNotes(); };
+    v.appendChild(f); }
+  else v.appendChild(el('span','msg','Sign in to fix a cut.'));
+  v.appendChild(el('span','vd',CUTS[cut].desc));
+}
+function rebuildCut(){
+  buildE(); renderGantt(); renderMatrix(); renderBudget(); renderVbar();
+  Object.keys(FIELD).forEach(renderText); renderNotes();
+}
+function setCut(k){
+  if(editing){ alert('You are still editing '+editing.fid+'. Save or cancel there first.'); return; }
+  cut=k; try{ localStorage.setItem('erasmus-cut',k); }catch(e){} rebuildCut();
+}
+function readFixed(){
+  var vs=notes.filter(function(n){ return n.anchor==='wp-variant'; }), last=vs[vs.length-1];
+  var nf = last && CUTS[last.body] ? {v:last.body,name:last.author_name,at:last.created_at} : null;
+  var changed = JSON.stringify(nf)!==JSON.stringify(fixed); fixed=nf;
+  if(fixed && cut!==fixed.v && !editing){ cut=fixed.v; rebuildCut(); return true; }
+  if(changed) renderVbar();
+  return false;
+}
 
 /* ---------- Sprungmarken oeffnen ihr Ziel ------------------------------------- */
-document.querySelectorAll('.over a[href^="#"]').forEach(function(a){
-  a.addEventListener('click',function(e){
-    var t=document.querySelector(a.getAttribute('href')); if(!t) return; e.preventDefault();
-    var part=t.classList.contains('part')?t:t.closest('details.part');
-    if(part) part.open=true; if(t.classList.contains('field')) t.open=true;
-    t.scrollIntoView({behavior:'smooth',block:'start'});
-  });
+document.querySelector('.over').addEventListener('click',function(e){
+  var a=e.target.closest('a[href^="#"]'); if(!a) return;
+  var t=document.querySelector(a.getAttribute('href')); if(!t) return; e.preventDefault();
+  var part=t.closest('details.part'); if(part) part.open=true;
+  var g=t.closest('details.grpbox'); if(g) g.open=true;
+  if(t.matches('details')) t.open=true;
+  t.scrollIntoView({behavior:'smooth',block:'start'});
 });
 
 /* ---------- Leiste: anmelden ------------------------------------------------------- */
@@ -479,8 +688,8 @@ function renderBar(msg){
     bar.appendChild(out);
   }
   bar.appendChild(el('span','sp'));
-  var all=el('button','','open all'); all.onclick=function(){ document.querySelectorAll('details.part,details.field').forEach(function(d){ d.open=true; }); };
-  var none=el('button','','close all'); none.onclick=function(){ document.querySelectorAll('details.part,details.field').forEach(function(d){ d.open=false; }); };
+  var all=el('button','','open all'); all.onclick=function(){ document.querySelectorAll('details.part,details.grpbox,details.field').forEach(function(d){ d.open=true; }); };
+  var none=el('button','','close all'); none.onclick=function(){ document.querySelectorAll('details.part,details.grpbox,details.field').forEach(function(d){ d.open=false; }); };
   bar.appendChild(all); bar.appendChild(none);
   if(msg){ var m=el('span','msg',msg); m.style.flexBasis='100%'; bar.appendChild(m); }
 }
@@ -620,11 +829,11 @@ function renderNames(){
 function renderCounts(){
   PARTS.forEach(function(p){
     var nText=0,nWait=0,nNotes=0,nDec=0;
-    p.fields.forEach(function(f){
-      var F=FIELD[f[0]], body=(texts[F.id]&&texts[F.id].body||'').trim();
+    (p.cur||p.fields.map(function(f){ return f[0]; })).forEach(function(fid){
+      var F=FIELD[fid], body=(texts[F.id]&&texts[F.id].body||'').trim();
       var anchors=[F.id].concat((F.o.dec||[]).map(function(n){ return 'dec-'+n; }));
       var nn=notes.filter(function(n){ return anchors.indexOf(n.anchor)>=0; }).length;
-      var tag=document.querySelector('#f-'+F.id+' > summary .tag'); tag.textContent='';
+      var tag=document.querySelector('#f-'+F.id+' > summary .tag'); if(!tag) return; tag.textContent='';
       if(me && me.name && !F.textless){
         var st = body ? ['','text'] : F.o.last ? ['last','written last'] : F.o.wait ? ['wait','waiting'] : ['wait','empty'];
         if(body) nText++; else nWait++;
@@ -646,12 +855,12 @@ async function loadTexts(){
   if(!me||!me.name) return;
   var r=await sb.from('field_text').select('*'); if(r.error) return;
   texts={}; r.data.forEach(function(x){ texts[x.field]=x; });
-  Object.keys(FIELD).forEach(renderText); renderCounts();
+  Object.keys(FIELD).forEach(renderText); renderCounts(); renderMatrix();
 }
 async function loadNotes(){
-  if(!me||!me.name){ notes=[]; renderNotes(); return; }
+  if(!me||!me.name){ notes=[]; fixed=null; renderVbar(); renderNotes(); return; }
   var r=await sb.from('notes').select('*').order('created_at'); if(r.error) return;
-  notes=r.data; renderNotes();
+  notes=r.data; if(!readFixed()) renderNotes();
 }
 var channel=null, tT=null, tN=null;
 function subscribe(){
@@ -664,11 +873,12 @@ function subscribe(){
 function setSession(session){
   var u=session&&session.user;
   me = u ? {email:u.email, name:(u.user_metadata&&u.user_metadata.name)||''} : null;
-  renderBar();
+  renderBar(); renderVbar(); renderMatrix();
   if(me&&me.name){ loadTexts(); loadNotes(); subscribe(); }
   else { texts={}; notes=[]; Object.keys(FIELD).forEach(renderText); renderNotes();
          if(channel){ sb.removeChannel(channel); channel=null; } }
 }
+rebuildCut();
 if(sb){
   sb.auth.onAuthStateChange(function(ev,session){ setTimeout(function(){ setSession(session); },0); });
   window.addEventListener('pagehide',function(){
